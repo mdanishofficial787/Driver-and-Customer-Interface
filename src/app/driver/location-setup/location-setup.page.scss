@@ -1,0 +1,360 @@
+/* Purple Gradient Header */
+.custom-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  --color: white;
+  --icon-font-size: 22px;
+  font-weight: 600;
+}
+
+.location-content {
+  --background: #F5F6FA;
+  --padding-top: 0 !important;
+  --padding-bottom: 0 !important;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60px 30px 40px;
+  color: white;
+  border-radius: 0 0 40px 40px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+}
+
+.setup-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.location-section {
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #1A1A2E;
+  padding: 0 4px;
+}
+
+.location-card {
+  margin: 12px 0;
+  /* Purple gradient card matching header */
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: white;
+  box-shadow: 0 12px 30px rgba(91, 95, 255, 0.12);
+  /* Make all location cards equal fixed height and center content */
+  height: 95px;
+  display: flex;
+  align-items: center;
+  padding: 0; /* we'll control inner padding on ion-card-content */
+  backdrop-filter: blur(10px);
+}
+
+.gps-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  
+  > ion-icon:first-child {
+    font-size: 40px;
+    color: #667eea;
+    flex-shrink: 0;
+  }
+  
+  .gps-info {
+    flex: 1;
+    
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      color: #667eea;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #667eea;
+      
+      &.success {
+        color: var(--ion-color-success);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        ion-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  
+  .success-icon {
+    font-size: 32px;
+    color: var(--ion-color-success);
+  }
+}
+
+/* Ensure inner content fills card and is vertically centered */
+.location-card ion-card-content {
+  width: 100%;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #667eea;
+}
+
+/* Make manual pin card content match layout of GPS card */
+.location-card ion-item {
+  background: transparent;
+  --inner-padding-end: 0;
+  margin: 0;
+}
+
+/* Reset stacked label padding so manual card aligns with GPS card */
+.location-card ion-item {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.location-card ion-item ion-label {
+  padding-left: 0 !important;
+  color: #667eea !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+
+.location-card ion-item ion-input,
+.location-card ion-item .native-input {
+  color: #667eea !important;
+  font-size: 17px !important;
+}
+
+.location-card ion-item ion-input::placeholder {
+  color: #667eea !important;
+  opacity: 0.7;
+  font-size: 15px !important;
+}
+
+.preferences-section {
+  margin: 0;
+}
+
+/* Make preference cards match the location card size/layout */
+.preferences-section ion-card {
+  height: 95px;
+  margin: 12px 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.preferences-section ion-card ion-card-content {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #667eea;
+}
+
+/* Ensure manual pin card's stacked label doesn't force extra height */
+.location-card ion-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.location-card ion-item ion-label {
+  margin-bottom: 0;
+  min-width: 0; /* allow label to size naturally so cards align */
+}
+
+/* Make sure cards fill the container equally */
+.location-card,
+.preferences-section ion-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button styling inside the cards */
+.location-card ion-button,
+.location-card ion-button,
+.preferences-section ion-card ion-button {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --color: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(91, 95, 255, 0.2);
+}
+
+/* Make placeholder and small text purple for contrast on purple cards */
+.location-card .gps-info p,
+.preferences-section ion-card p,
+.location-card ion-item ion-label,
+.preferences-section ion-card ion-label {
+  color: #667eea !important;
+  font-size: 15px !important;
+}
+
+.preferences-section ion-card ion-item {
+  --background: transparent;
+}
+
+.preferences-section ion-card ion-item ion-label,
+.preferences-section ion-card ion-item ion-select {
+  color: #667eea !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+
+.preferences-section ion-card ion-item ion-select::part(placeholder) {
+  color: #667eea !important;
+  font-size: 15px !important;
+}
+
+.preferences-section ion-card ion-item ion-input::placeholder,
+.preferences-section ion-card ion-item ion-input {
+  color: #667eea !important;
+  font-size: 17px !important;
+}
+
+/* On dark-mode, fall back to the theme's card background */
+@media (prefers-color-scheme: dark) {
+  .location-card,
+  .preferences-section ion-card {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
+    color: white;
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.2);
+  }
+  .location-card ion-card-content,
+  .preferences-section ion-card ion-card-content {
+    color: white;
+  }
+  .location-card ion-button,
+  .preferences-section ion-card ion-button {
+    --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color: white;
+  }
+}
+
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--ion-color-light-shade);
+  }
+  
+  span {
+    position: relative;
+    background: var(--ion-background-color);
+    padding: 0 15px;
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 0;
+  margin-bottom: 10px;
+}
+
+ion-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+ion-note {
+  font-size: 12px;
+  margin: 5px 0 0 0;
+}
+
+.button-container {
+  margin-top: 40px;
+}
+
+ion-button {
+  --border-radius: 8px;
+  height: 48px;
+  font-weight: 600;
+}

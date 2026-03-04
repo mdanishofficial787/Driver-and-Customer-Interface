@@ -1,0 +1,219 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="header-section">
+    <h1>Verification Status</h1>
+    <p class="subtitle">Verification results and next steps</p>
+  </div>
+
+  <div class="verification-container">
+    
+    <!-- Pending Status -->
+    <!-- Not Submitted - Upload Documents -->
+    <div class="status-card upload-card" *ngIf="verificationStatus === 'not_submitted'">
+      <h2>Upload Documents for Verification</h2>
+      <p class="status-message">Admin will contact you for document verification. Please keep ready:</p>
+
+      <div class="upload-grid">
+        <div class="upload-item">
+          <label class="file-label">CNIC Front</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'cnicFront')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="cnicFront">{{ cnicFront.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">CNIC Back</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'cnicBack')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="cnicBack">{{ cnicBack.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Driving License Front</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseFront')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="drivingLicenseFront">{{ drivingLicenseFront.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Driving License Back</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseBack')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="drivingLicenseBack">{{ drivingLicenseBack.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Vehicle Documents</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'vehicleDocuments')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="vehicleDocuments">{{ vehicleDocuments.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Smart Card Front</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardFront')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="smartCardFront">{{ smartCardFront.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Smart Card Back</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardBack')" accept="image/*,application/pdf">
+          </label>
+          <div class="filename" *ngIf="smartCardBack">{{ smartCardBack.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Driver Picture</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'driverPicture')" accept="image/*">
+          </label>
+          <div class="filename" *ngIf="driverPicture">{{ driverPicture.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Car Front</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'carFront')" accept="image/*">
+          </label>
+          <div class="filename" *ngIf="carFront">{{ carFront.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Car Back</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'carBack')" accept="image/*">
+          </label>
+          <div class="filename" *ngIf="carBack">{{ carBack.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Car Left</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'carLeft')" accept="image/*">
+          </label>
+          <div class="filename" *ngIf="carLeft">{{ carLeft.name }}</div>
+        </div>
+
+        <div class="upload-item">
+          <label class="file-label">Car Right</label>
+          <label class="file-btn">
+            <span>Select file</span>
+            <input class="file-input" type="file" (change)="onFileChange($event,'carRight')" accept="image/*">
+          </label>
+          <div class="filename" *ngIf="carRight">{{ carRight.name }}</div>
+        </div>
+      </div>
+
+      <ion-button expand="block" (click)="submitDocuments()">Submit Documents</ion-button>
+    </div>
+
+    <div class="status-card" *ngIf="verificationStatus === 'pending'">
+      <ion-icon name="time-outline" class="status-icon pending"></ion-icon>
+      <h2>Verification Pending</h2>
+      <p class="status-message">
+        Your registration has been submitted successfully. 
+        Our admin team is reviewing your documents.
+      </p>
+      
+      <div class="info-card">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <div>
+          <h3>What happens next?</h3>
+          <ul>
+            <li>Admin will verify your CNIC</li>
+            <li>License verification</li>
+            <li>Vehicle documents check</li>
+            <li>Smart card validation</li>
+          </ul>
+          <p class="time-estimate">
+            <ion-icon name="hourglass-outline"></ion-icon>
+            Usually takes 24-48 hours
+          </p>
+        </div>
+      </div>
+
+      <ion-button expand="block" fill="outline" (click)="refreshStatus()">
+        <ion-icon slot="start" name="refresh-outline"></ion-icon>
+        Check Status
+      </ion-button>
+
+      <!-- Manual approve button for testing -->
+      <ion-button expand="block" color="success" (click)="verificationStatus='approved'" style="margin-top: 12px;">
+        <ion-icon slot="start" name="checkmark-circle"></ion-icon>
+        [TEST] Approve Verification
+      </ion-button>
+    </div>
+
+    <!-- Approved Status -->
+    <div class="status-card" *ngIf="verificationStatus === 'approved'">
+      <ion-icon name="checkmark-circle-outline" class="status-icon approved"></ion-icon>
+      <h2>Verification Approved!</h2>
+      <p class="status-message">
+        Congratulations! Your documents have been verified.
+      </p>
+      
+      <ion-button expand="block" (click)="goToDriverHome()">
+        Setup Location & Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Rejected Status -->
+    <div class="status-card" *ngIf="verificationStatus === 'rejected'">
+      <ion-icon name="close-circle-outline" class="status-icon rejected"></ion-icon>
+      <h2>Verification Failed</h2>
+      <p class="status-message">
+        Unfortunately, your documents could not be verified.
+      </p>
+      
+      <div class="info-card error">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <div>
+          <h3>Reasons:</h3>
+          <ul>
+            <li>CNIC image not clear</li>
+            <li>License expired</li>
+          </ul>
+        </div>
+      </div>
+
+      <ion-button expand="block" color="danger">
+        Upload Documents Again
+      </ion-button>
+    </div>
+
+    <!-- Contact Support -->
+    <div class="support-section">
+      <ion-icon name="call-outline"></ion-icon>
+      <p>Need help? Contact support</p>
+      <a href="tel:+923001234567">+92 300 1234567</a>
+    </div>
+  </div>
+</ion-content>

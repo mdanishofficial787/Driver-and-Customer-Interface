@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Monthly Pickup/Drop</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="request-card" *ngIf="!submitted">
+    <ion-item>
+      <ion-label position="stacked">Pickup Location</ion-label>
+      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Drop Location</ion-label>
+      <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Monthly Schedule</ion-label>
+      <ion-input [(ngModel)]="monthlySchedule" placeholder="e.g. 1st of every month, or specific days"></ion-input>
+    </ion-item>
+
+    <div class="actions">
+      <ion-button expand="block" (click)="submitRequest()">Submit Request</ion-button>
+    </div>
+  </div>
+
+  <div class="status-card" *ngIf="submitted">
+    <h2>Request Submitted</h2>
+    <p>Waiting for Admin</p>
+  </div>
+</ion-content>

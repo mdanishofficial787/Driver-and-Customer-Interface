@@ -1,0 +1,275 @@
+/* =============================================
+	 CUSTOMER SIGNUP STEP 2 - MATCH DRIVER UI
+	 Copied and adapted from driver/signup-step2 styles
+	 ============================================= */
+
+.signup-content {
+	--background: #F5F6FA;
+	padding-top: env(safe-area-inset-top);
+}
+
+/* Make header toolbar transparent like step1 */
+.custom-toolbar {
+	--background: transparent;
+	--border-width: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+
+.back-btn {
+	--color: white;
+	--icon-font-size: 22px;
+	font-weight: 600;
+}
+
+.signup-container {
+	min-height: 100%;
+}
+
+/* ============ HEADER SECTION ============ */
+.header-section {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	height: 320px;
+	padding: 0 30px;
+	text-align: center;
+	position: relative;
+	z-index: 5;
+	border-radius: 0 0 40px 40px;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		right: -10%;
+		width: 300px;
+		height: 300px;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 50%;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: -30%;
+		left: -5%;
+		width: 200px;
+		height: 200px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 50%;
+	}
+}
+
+/* Back Arrow Top Left */
+.back-button {
+	position: absolute;
+	top: 55px;
+	left: 15px;
+	z-index: 20;
+}
+
+.back-button ion-back-button {
+	--color: white;
+	--icon-font-size: 22px;
+}
+
+.header-content {
+	padding-top: 20px;
+	position: relative;
+	z-index: 1;
+	color: white;
+}
+
+.icon-wrapper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 24px;
+}
+
+.header-icon {
+	font-size: 85px;
+	color: #ffffff;
+	margin-bottom: 10px;
+}
+
+h1 {
+	color: #ffffff;
+	font-size: 32px;
+	font-weight: 800;
+	margin: 0;
+}
+
+.subtitle {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 15px;
+	margin-top: 6px;
+}
+
+/* ============ PROGRESS SECTION ============ */
+.progress-card {
+	background: white;
+	margin: -44px auto 0;
+	border-radius: 20px;
+	padding: 20px 24px;
+	box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+	position: relative;
+	z-index: 60;
+
+	width: 600px;
+	max-width: 90%;
+}
+
+.progress-steps {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0;
+	width: 100%;
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 13px;
+	font-weight: 600;
+	color: #9B9BB4;
+}
+
+.step-circle {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #E8E8F0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 800;
+	font-size: 18px;
+	margin-bottom: 6px;
+}
+
+.step.active .step-circle {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #ffffff;
+	box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.step.active { color: #667eea; }
+.step.completed .step-circle { background: #00D68F; color: #ffffff; }
+.step.completed { color: #00D68F; }
+
+.step-line { flex: 1; height: 3px; background: #E8E8F0; margin: 0 10px; }
+
+/* ============ FORM SECTION ============ */
+.form-section {
+	padding: 40px 24px 60px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.input-group { margin-bottom: 22px; }
+
+.input-label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #2D2D4E;
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+
+.input-label ion-icon { font-size: 18px; color: #667eea; }
+
+.input-wrapper,
+.select-wrapper {
+	position: relative;
+	background: #ffffff;
+	border-radius: 14px;
+	border: 2px solid #E8E8F0;
+	display: flex;
+	align-items: center;
+	transition: 0.3s ease;
+}
+
+.input-wrapper:focus-within,
+.select-wrapper:focus-within {
+	border-color: #00D68F;
+	box-shadow: 0 0 0 4px rgba(0, 214, 143, 0.1);
+}
+
+ion-input,
+ion-select {
+	--padding-start: 18px;
+	--padding-end: 45px;
+	--padding-top: 16px;
+	--padding-bottom: 16px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #2D2D4E;
+	flex: 1;
+}
+
+.valid-icon { position: absolute; right: 15px; font-size: 20px; color: #00D68F; }
+
+.error-msg { display: flex; align-items: center; gap: 5px; color: #FF3D71; font-size: 12.5px; font-weight: 500; margin: 8px 0 0 4px; }
+
+/* ============ DOCUMENT UPLOAD SECTION (BLACK TEXT) ============ */
+.upload-note,
+.security-note {
+	background: #ffffff;
+	padding: 18px 20px;
+	border-radius: 14px;
+	margin: 30px 0;
+	border-left: 4px solid #667eea;
+	color: #000000;
+}
+
+.upload-note h4,
+.security-note h4 {
+	color: #000000;
+	font-weight: 700;
+	margin-bottom: 6px;
+}
+
+.upload-note p,
+.security-note p { color: #000000; font-size: 13px; }
+
+.upload-note ul li,
+.security-note ul li { color: #000000; font-size: 13px; }
+
+.upload-note *,
+.security-note * { color: #000000 !important; }
+
+/* ============ BUTTON ============ */
+.submit-button,
+.next-btn {
+	--background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	--border-radius: 14px;
+	--box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+	height: 56px;
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 25px;
+	text-transform: none;
+	transition: all 0.3s ease;
+}
+
+.submit-button:not([disabled]):hover,
+.next-btn:not([disabled]):hover { transform: translateY(-2px); }
+
+.submit-button[disabled],
+.next-btn[disabled] { --background: #C5C5D9; opacity: 0.7; }
+
+ion-icon { font-size: 20px; margin-left: 8px; }

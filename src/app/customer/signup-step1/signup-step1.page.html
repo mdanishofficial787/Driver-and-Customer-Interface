@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  <div class="signup-container">
+
+    <!-- Header -->
+    <div class="header-section">
+      <div class="icon-wrapper">
+        <ion-icon name="person-circle-outline" class="header-icon"></ion-icon>
+      </div>
+      <h1>Customer Registration</h1>
+      <p class="subtitle">Step 1 of 2 - Personal Information</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="progress-card">
+      <div class="progress-steps">
+        <div class="step active">
+          <div class="step-circle">1</div>
+          <span class="step-label">Personal</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <span class="step-label">Account</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="signupForm" class="form-section">
+
+      <!-- Name -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="person-outline"></ion-icon>
+          Name *
+        </label>
+        <div class="input-box" [class.focused]="isNameFocused" [class.valid]="signupForm.get('fullName')?.valid" [class.error-box]="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+          <ion-input type="text" formControlName="fullName" placeholder="Your full name" (ionFocus)="isNameFocused=true" (ionBlur)="isNameFocused=false"></ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('fullName')?.valid && signupForm.get('fullName')?.touched"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="call-outline"></ion-icon>
+          Phone *
+        </label>
+        <div class="input-box" [class.focused]="isMobileFocused" [class.valid]="signupForm.get('mobile')?.valid" [class.error-box]="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
+          <ion-input type="tel" formControlName="mobile" placeholder="03XXXXXXXXX" (ionFocus)="isMobileFocused=true" (ionBlur)="isMobileFocused=false" maxlength="11"></ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('mobile')?.valid && signupForm.get('mobile')?.touched"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Current Location -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="locate-outline"></ion-icon>
+          Current Location
+        </label>
+        <div class="input-box">
+          <ion-input type="text" formControlName="currentLocation" placeholder="Tap GPS to fill" readonly></ion-input>
+          <ion-button fill="clear" size="small" (click)="getCurrentLocation()">GPS</ion-button>
+        </div>
+      </div>
+
+      <!-- Pickup Location -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="map-outline"></ion-icon>
+          Pickup Location *
+        </label>
+        <div class="input-box">
+          <ion-input type="text" formControlName="pickupLocation" placeholder="Where should we pick you up?"></ion-input>
+        </div>
+      </div>
+
+      <!-- Weekly Schedule -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="calendar-outline"></ion-icon>
+          Weekly Schedule
+        </label>
+        <div class="select-wrapper">
+          <ion-select formControlName="weeklySchedule" multiple okText="Done" cancelText="Cancel" placeholder="Select days">
+            <ion-select-option value="Mon">Mon</ion-select-option>
+            <ion-select-option value="Tue">Tue</ion-select-option>
+            <ion-select-option value="Wed">Wed</ion-select-option>
+            <ion-select-option value="Thu">Thu</ion-select-option>
+            <ion-select-option value="Fri">Fri</ion-select-option>
+            <ion-select-option value="Sat">Sat</ion-select-option>
+            <ion-select-option value="Sun">Sun</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" class="next-btn" (click)="nextStep()" [disabled]="signupForm.get('fullName')?.invalid || signupForm.get('mobile')?.invalid || signupForm.get('pickupLocation')?.invalid">
+        Submit
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

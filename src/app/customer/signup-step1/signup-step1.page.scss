@@ -1,0 +1,356 @@
+/* =============================================
+   CUSTOMER SIGNUP STEP 1 - MATCH DRIVER UI
+   Copied and adapted from driver/signup-step1 styles
+   ============================================= */
+
+.signup-content {
+  --background: #F5F6FA;
+}
+
+/* Custom Toolbar - Transparent over gradient */
+.custom-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  --color: white;
+  --icon-font-size: 22px;
+  font-weight: 600;
+}
+
+.signup-container {
+  min-height: 100%;
+}
+
+/* ============ HEADER SECTION ============ */
+.header-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  height: 320px;              /* exact same height */
+  padding: 0 30px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 40px 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
+}
+.icon-wrapper {
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon {
+  font-size: 90px;
+  color: white;
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.25));
+}
+
+h1 {
+  color: white;
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ PROGRESS STEPS ============ */
+.progress-card {
+  background: white;
+  margin: -44px auto 0;
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+  position: relative;
+  z-index: 5;
+
+  /* Match form section width */
+  width: 600px;
+  max-width: 90%; /* responsive */
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  /* match input box width */
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.step-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E8E8F0;
+  color: #9B9BB4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  border: 3px solid #E8E8F0;
+  transition: all 0.3s ease;
+}
+
+.step-label {
+  font-size: 13px;
+  color: #9B9BB4;
+  font-weight: 600;
+}
+
+.step.active .step-circle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.step.active .step-label {
+  color: #667eea;
+  font-weight: 700;
+}
+
+.step-line {
+  flex: 1;
+  height: 3px;
+  background: #E8E8F0;
+  border-radius: 2px;
+  margin: 0 8px;
+  margin-bottom: 28px;
+}
+
+/* ============ FORM SECTION ============ */
+.form-section {
+  padding: 24px 18px 48px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2D2D4E;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-left: 2px;
+
+  ion-icon {
+    font-size: 18px;
+    color: #667eea;
+  }
+}
+
+.input-box {
+  position: relative;
+  background: white;
+  border-radius: 14px;
+  border: 2.5px solid #E8E8F0;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s ease;
+  overflow: hidden;
+
+  ion-button {
+    margin-right: 8px;
+  }
+
+  ion-input {
+    --padding-start: 18px;
+    --padding-end: 50px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2D2D4E; /* make entered data dark/black */
+    flex: 1;
+  }
+
+  &.focused {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+  }
+
+  &.valid {
+    border-color: #00D68F;
+  }
+
+  &.error-box {
+    border-color: #FF3D71;
+    box-shadow: 0 0 0 4px rgba(255, 61, 113, 0.08);
+  }
+
+  .valid-icon {
+    position: absolute;
+    right: 16px;
+    font-size: 22px;
+    color: #00D68F;
+    animation: pop-in 0.2s ease-out;
+  }
+}
+
+/* Weekly schedule: ensure selected days text appears black */
+.select-wrapper ion-select {
+  --color: #000; /* selected text color */
+  --placeholder-color: rgba(0,0,0,0.45);
+}
+.select-wrapper ion-select .select-text,
+.select-wrapper ion-select .select-value {
+  color: #000 !important;
+}
+/* Action-sheet / alert option labels when choosing days */
+.select-wrapper .alert-checkbox-label,
+.select-wrapper .alert-radio-label,
+.select-wrapper .action-sheet-button {
+  color: #000 !important;
+}
+
+/* Remove blue highlight and force black text for selected chips/values */
+.select-wrapper ion-select .select-text .button,
+.select-wrapper ion-select .select-value .button,
+.select-wrapper ion-select .select-text .select-value,
+.select-wrapper ion-select .select-text .ion-select-value {
+  background: transparent !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* Fallback for shadow DOM parts (Ionic newer versions) */
+.select-wrapper ion-select::part(text),
+.select-wrapper ion-select::part(value) {
+  color: #000 !important;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #FF3D71;
+  font-size: 12.5px;
+  font-weight: 500;
+  margin: 8px 0 0 4px;
+
+  ion-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+}
+
+/* ============ SECURITY NOTE ============ */
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #EEF0FF 0%, #F5F0FF 100%);
+  padding: 18px 20px;
+  border-radius: 14px;
+  margin: 30px 0;
+  border-left: 4px solid #667eea;
+
+  > ion-icon {
+    font-size: 30px;
+    color: #667eea;
+    flex-shrink: 0;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D2D4E;
+    margin: 0 0 4px 0;
+  }
+
+  p {
+    font-size: 12px;
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+/* ============ NEXT BUTTON ============ */
+.next-btn {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --border-radius: 14px;
+  --box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35);
+  height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  text-transform: none;
+
+  &[disabled] {
+    --background: #C5C5D9;
+    --box-shadow: none;
+    opacity: 1;
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+}

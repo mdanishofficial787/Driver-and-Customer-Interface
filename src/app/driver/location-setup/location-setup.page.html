@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/driver/verification-pending" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="location-content">
+
+  <!-- Purple Header Section -->
+  <div class="dashboard-header">
+    <div class="header-top">
+      <div>
+        <h1>Setup Your Location</h1>
+        <p class="subtitle">Help us serve you better</p>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="locationForm">
+    <div class="setup-container">
+
+      <!-- GPS Section -->
+      <div class="location-section">
+        <h3>Current Location</h3>
+
+        <ion-card class="location-card">
+          <ion-card-content>
+            <div class="gps-option">
+              <ion-icon name="navigate-circle-outline"></ion-icon>
+              <div class="gps-info">
+                <h4>Enable GPS</h4>
+                <p *ngIf="!gpsEnabled">Get your current location automatically</p>
+                <p *ngIf="gpsEnabled" class="success">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                  {{ currentLocation.address }}
+                </p>
+              </div>
+              <ion-button
+                *ngIf="!gpsEnabled"
+                (click)="enableGPS()"
+                fill="solid"
+                size="small">
+                Enable GPS
+              </ion-button>
+              <ion-icon
+                *ngIf="gpsEnabled"
+                name="checkmark-circle"
+                class="success-icon">
+              </ion-icon>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <!-- Manual Address -->
+        <ion-card class="location-card">
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-label position="stacked">Pin Location Manually</ion-label>
+              <ion-input
+                formControlName="manualAddress"
+                placeholder="Enter your address">
+              </ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <!-- Preferences -->
+      <div class="preferences-section">
+        <h3>Your Preferences</h3>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-label position="stacked">Preferred Route *</ion-label>
+              <ion-input
+                formControlName="preferredRoute"
+                placeholder="e.g., Lahore to Islamabad">
+              </ion-input>
+            </ion-item>
+            <ion-note color="danger" *ngIf="locationForm.get('preferredRoute')?.invalid && locationForm.get('preferredRoute')?.touched">
+              Please enter your preferred route
+            </ion-note>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-label position="stacked">Preferred Timing *</ion-label>
+              <ion-select formControlName="preferredTiming" placeholder="Select timing">
+                <ion-select-option value="morning">Morning (6 AM - 12 PM)</ion-select-option>
+                <ion-select-option value="afternoon">Afternoon (12 PM - 6 PM)</ion-select-option>
+                <ion-select-option value="evening">Evening (6 PM - 12 AM)</ion-select-option>
+                <ion-select-option value="night">Night (12 AM - 6 AM)</ion-select-option>
+                <ion-select-option value="flexible">Flexible (Anytime)</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-note color="danger" *ngIf="locationForm.get('preferredTiming')?.invalid && locationForm.get('preferredTiming')?.touched">
+              Please select your preferred timing
+            </ion-note>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="button-container">
+        <ion-button
+          expand="block"
+          (click)="saveLocation()">
+          Save & Continue
+          <ion-icon slot="end" name="checkmark-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+    </div>
+  </form>
+</ion-content>

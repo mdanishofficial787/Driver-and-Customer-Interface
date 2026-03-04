@@ -1,0 +1,192 @@
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 12px;
+  min-height: 300px;
+}
+
+/* Hide yellow decorative frame */
+.outer::before,
+.outer::after {
+  display: none !important;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 560px;
+  background: #121212;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+/* circular back arrow inside the card (top-left) */
+.page-arrow {
+  /* place arrow over top-left of the page (near header) */
+  position: fixed !important;
+  left: 12px !important;
+  top: 8px !important;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6b5cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(107,92,255,0.12);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+/* black rounded background behind arrow to match screenshot */
+.page-arrow::before {
+  content: '';
+  position: fixed;
+  left: 4px;
+  top: 6px;
+  width: 18px;
+  height: 42px;
+  background: #000;
+  border-radius: 8px;
+  z-index: 9998;
+}
+.page-arrow ion-icon { color: #fff; font-size: 18px; transform: translateX(1px); }
+.form-card ion-list {
+  --background: transparent;
+  margin: 0;
+}
+.form-card ion-item {
+  --background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.form-card ion-label {
+  color: #cfcfcf;
+}
+.submit-btn {
+  --background: #6b5cff;
+  --border-radius: 6px;
+  color: #fff;
+}
+.submitted {
+  display: none;
+}
+
+.status-card {
+  text-align: center;
+  padding: 28px;
+  background: #ffffff;
+  color: #111;
+  border-radius: 12px;
+  border: 3px solid #d4544a;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  max-width: 420px;
+}
+
+.status-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #111;
+}
+
+.status-card p {
+  font-size: 14px;
+  margin: 0;
+  color: #111;
+}
+
+/* Allow toolbar back buttons on this page (show visible back control) */
+
+/* Make the header background taller and add decorative bubbles (like driver module) */
+/* Header / decorative bubbles sizing per request */
+ion-header ion-toolbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --border-width: 0;
+  height: 220px;
+  padding: 12px 16px;
+  color: #fff;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+ion-header ion-toolbar::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -20px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+
+ion-header ion-toolbar::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -10px;
+  width: 180px;
+  height: 180px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+/* push content down so form card aligns visually */
+.outer { 
+  padding-top: 18px;
+}
+
+/* Remove yellow decorative elements/borders */
+.outer svg,
+.form-card svg,
+.submitted svg {
+  display: none !important;
+}
+
+/* form card wider */
+.form-card { 
+  max-width: 700px;
+  border: none;
+}
+
+/* Ensure form-card has no decorative borders */
+.form-card::before,
+.form-card::after {
+  display: none !important;
+}
+
+/* hide visual scrollbar but keep scrolling */
+:host ::ng-deep ion-content,
+:host ::ng-deep .ion-page {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+:host ::ng-deep ion-content::-webkit-scrollbar,
+:host ::ng-deep .ion-page::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+
+/* Remove all decorative pseudo-elements that might be yellow frames */
+ng-container::before,
+ng-container::after,
+:host ::ng-deep .outer svg,
+:host ::ng-deep svg[fill="#ffff00"],
+:host ::ng-deep svg[fill="#FFFF00"],
+:host ::ng-deep svg[fill="#fff000"],
+:host ::ng-deep svg[stroke="#ffff00"],
+:host ::ng-deep svg[stroke="#FFFF00"] {
+  display: none !important;
+}
+
+/* Remove heavy shadow (black bar) created by .shadow-frame on this page */
+.shadow-frame,
+.submitted {
+  box-shadow: none !important;
+}
+

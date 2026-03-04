@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customer/signup-step1" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  <div class="signup-container">
+    <div class="header-section">
+      <div class="header-content rs-slide-in">
+        <div class="icon-wrapper rs-float">
+          <ion-icon name="person-outline" class="header-icon"></ion-icon>
+          <div class="icon-bg"></div>
+        </div>
+        <h1>Account Setup</h1>
+        <p class="subtitle">Step 2 of 2 - Create your account</p>
+      </div>
+    </div>
+
+    <div class="progress-card rs-fade-in">
+      <div class="progress-steps">
+        <div class="step completed">
+          <div class="step-circle">
+            <ion-icon name="checkmark"></ion-icon>
+          </div>
+          <span>Personal</span>
+        </div>
+        <div class="step-line active"></div>
+        <div class="step active">
+          <div class="step-circle">2</div>
+          <span>Account</span>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="signupForm" class="form-section rs-slide-in">
+
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          Account Type *
+        </label>
+        <div class="select-wrapper">
+          <ion-select formControlName="accountType" placeholder="Select account type" interface="action-sheet">
+            <ion-select-option value="individual">Individual</ion-select-option>
+            <ion-select-option value="business">Business</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          Password *
+        </label>
+        <div class="input-wrapper">
+          <ion-input type="password" formControlName="password" placeholder="Choose a password"></ion-input>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="lock-open-outline"></ion-icon>
+          Confirm Password *
+        </label>
+        <div class="input-wrapper">
+          <ion-input type="password" formControlName="confirmPassword" placeholder="Repeat password"></ion-input>
+        </div>
+      </div>
+
+      <ion-button expand="block" class="submit-button" (click)="submitRegistration()" [disabled]="signupForm.invalid">
+        Submit Registration
+        <ion-icon slot="end" name="checkmark-done"></ion-icon>
+      </ion-button>
+
+    </form>
+
+  </div>
+</ion-content>

@@ -1,0 +1,205 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="driver-content">
+
+  <!-- Purple Header Section -->
+  <div class="dashboard-header">
+    <div class="header-top">
+      <div>
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">{{ driverName }}</p>
+      </div>
+      <div class="availability-toggle">
+        <ion-toggle 
+          [checked]="isAvailable" 
+          (ionChange)="toggleAvailability($event)">
+        </ion-toggle>
+        <span class="status-label" [class.available]="isAvailable">
+          {{ isAvailable ? 'Online' : 'Offline' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-container">
+    <ion-card class="stat-card">
+      <ion-card-content>
+        <ion-icon name="car-outline"></ion-icon>
+        <h3>{{ stats.totalRides }}</h3>
+        <p>Total Rides</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="stat-card">
+      <ion-card-content>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <h3>{{ stats.todayRides }}</h3>
+        <p>Today</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="stat-card">
+      <ion-card-content>
+        <ion-icon name="cash-outline"></ion-icon>
+        <h3>{{ stats.earnings }}</h3>
+        <p>Earnings (Rs)</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="stat-card">
+      <ion-card-content>
+        <ion-icon name="star"></ion-icon>
+        <h3>{{ stats.rating }}</h3>
+        <p>Rating</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Assigned Rides Section -->
+  <div class="rides-section">
+    <div class="section-header">
+      <h2>Assigned Rides</h2>
+      <ion-badge color="primary">{{ assignedRides.length }}</ion-badge>
+    </div>
+
+    <!-- No Rides -->
+    <div class="empty-state" *ngIf="assignedRides.length === 0">
+      <ion-icon name="car-sport-outline"></ion-icon>
+      <h3>No Rides Assigned</h3>
+      <p>You will be notified when a ride is assigned to you</p>
+    </div>
+
+    <!-- Rides List -->
+    <ion-card class="ride-card" *ngFor="let ride of assignedRides">
+      <ion-card-content>
+        
+        <!-- Ride Header -->
+        <div class="ride-header">
+          <div>
+            <h3>{{ ride.customerName }}</h3>
+            <ion-badge [color]="getRideTypeColor(ride.rideType)">
+              {{ ride.rideType }}
+            </ion-badge>
+          </div>
+          <div class="ride-id">{{ ride.id }}</div>
+        </div>
+
+        <!-- Ride Details -->
+        <div class="ride-details">
+          <div class="location-row">
+            <ion-icon name="location" color="success"></ion-icon>
+            <div>
+              <p class="label">Pickup</p>
+              <p class="value">{{ ride.pickupLocation }}</p>
+            </div>
+          </div>
+
+          <div class="location-divider"></div>
+
+          <div class="location-row">
+            <ion-icon name="location" color="danger"></ion-icon>
+            <div>
+              <p class="label">Drop</p>
+              <p class="value">{{ ride.dropLocation }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ride Info -->
+        <div class="ride-info">
+          <div class="info-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ ride.scheduledTime }}</span>
+          </div>
+          <div class="info-item">
+            <ion-icon name="cash-outline"></ion-icon>
+            <span>Rs. {{ ride.fare }}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons" *ngIf="ride.status === 'pending'">
+          <ion-button 
+            expand="block" 
+            fill="outline" 
+            color="danger"
+            (click)="rejectRide(ride)">
+            <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+            Reject
+          </ion-button>
+          <ion-button 
+            expand="block"
+            (click)="acceptRide(ride)">
+            <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+            Accept
+          </ion-button>
+        </div>
+
+        <!-- Accepted Ride Details -->
+        <div class="accepted-ride-details" *ngIf="ride.status === 'accepted'">
+          <div class="accepted-badge">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            Ride Accepted
+          </div>
+
+          <!-- Distance & Time Grid -->
+          <div class="distance-time-grid">
+            <div class="distance-item">
+              <ion-icon name="navigate-outline"></ion-icon>
+              <div>
+                <p class="label">Distance</p>
+                <p class="value">{{ ride.paymentDetails?.estimatedDistance }} km</p>
+              </div>
+            </div>
+            <div class="time-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <div>
+                <p class="label">Est. Time</p>
+                <p class="value">{{ ride.paymentDetails?.estimatedTime }} min</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Breakdown -->
+          <div class="payment-breakdown">
+            <h4>Payment Details</h4>
+            <div class="payment-row">
+              <span>Base Fare</span>
+              <span>Rs. {{ ride.paymentDetails?.baseFare }}</span>
+            </div>
+            <div class="payment-row">
+              <span>Platform Fee (10%)</span>
+              <span>- Rs. {{ ride.paymentDetails?.platformFee }}</span>
+            </div>
+            <div class="payment-divider"></div>
+            <div class="payment-row total">
+              <span>Your Earnings</span>
+              <span>Rs. {{ ride.paymentDetails?.driverEarnings }}</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons for Accepted Ride -->
+          <div class="accepted-actions">
+            <ion-button expand="block" color="success">
+              <ion-icon slot="start" name="navigate"></ion-icon>
+              Start Navigation
+            </ion-button>
+            <ion-button expand="block" fill="outline">
+              <ion-icon slot="start" name="call"></ion-icon>
+              Call Customer
+            </ion-button>
+          </div>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

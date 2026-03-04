@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Hire Driver</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="request-card" *ngIf="!submitted">
+    <ion-item>
+      <ion-label position="stacked">Customer CNIC *</ion-label>
+      <ion-input [(ngModel)]="cnic" placeholder="12345-1234567-1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Hiring Person Name</ion-label>
+      <ion-input [(ngModel)]="hiringPersonName" placeholder="Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Date & Time</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="dateTime"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Pickup Location</ion-label>
+      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Return Time & Place</ion-label>
+      <ion-input [(ngModel)]="returnTimePlace" placeholder="Return time & place"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Duration</ion-label>
+      <ion-input [(ngModel)]="duration" placeholder="e.g. 4 hours"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Preferred Location</ion-label>
+      <ion-input [(ngModel)]="preferredLocation" placeholder="Preferred location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Preferred Timing</ion-label>
+      <ion-input [(ngModel)]="preferredTiming" placeholder="Preferred timing"></ion-input>
+    </ion-item>
+
+    <div class="actions">
+      <ion-button expand="block" (click)="submitHire()">Submit</ion-button>
+    </div>
+  </div>
+
+  <div class="status-card" *ngIf="submitted">
+    <h2>Verification & Admin Approval</h2>
+    <p>Your hire request has been submitted and is under verification.</p>
+  </div>
+</ion-content>

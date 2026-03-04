@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Schedule Ride</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="request-card" *ngIf="!submitted">
+    <ion-item>
+      <ion-label position="stacked">Required Date(s)</ion-label>
+      <ion-input [(ngModel)]="requiredDates" placeholder="Enter date(s) or range"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Pickup Location</ion-label>
+      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Drop Location</ion-label>
+      <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rating</ion-label>
+      <ion-select [(ngModel)]="rating">
+        <ion-select-option value="Standard">Standard</ion-select-option>
+        <ion-select-option value="Premium">Premium</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div class="actions">
+      <ion-button expand="block" (click)="requestDriver()">Request Driver</ion-button>
+    </div>
+  </div>
+
+  <div class="status-card" *ngIf="submitted">
+    <h2>Admin Matching</h2>
+    <p>Driver Assigned</p>
+  </div>
+</ion-content>

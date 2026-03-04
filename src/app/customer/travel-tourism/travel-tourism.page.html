@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" aria-label="Back">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Travel & Tourism</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="outer">
+    <div class="form-card" *ngIf="!submitted">
+      <div class="page-arrow" (click)="goBack()" role="button" aria-label="Back to Home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </div>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Customer CNIC *</ion-label>
+          <ion-input [(ngModel)]="cnic" placeholder="e.g. 12345-1234567-1"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Destination</ion-label>
+          <ion-input [(ngModel)]="destination"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Travel Dates</ion-label>
+          <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="travelDates"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Pickup Location</ion-label>
+          <ion-input [(ngModel)]="pickupLocation"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Return Location</ion-label>
+          <ion-input [(ngModel)]="returnLocation"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Duration (Days)</ion-label>
+          <ion-input type="number" [(ngModel)]="durationDays"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-row class="ion-padding">
+        <ion-col>
+          <ion-button expand="block" class="submit-btn" (click)="submitTravel()">SUBMIT</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="status-card" *ngIf="submitted">
+      <h2>Admin Review</h2>
+      <p>Travel Assigned</p>
+    </div>
+  </div>
+</ion-content>

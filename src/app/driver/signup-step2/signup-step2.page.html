@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/driver/signup-step1" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  <div class="signup-container">
+    
+    <!-- Header -->
+    <div class="header-section">
+      <div class="header-content rs-slide-in">
+        <div class="icon-wrapper rs-float">
+          <ion-icon name="car-outline" class="header-icon"></ion-icon>
+          <div class="icon-bg"></div>
+        </div>
+        <h1>Vehicle Information</h1>
+        <p class="subtitle">Step 2 of 2 - Almost Done!</p>
+      </div>
+    </div>
+
+    <!-- Progress Card -->
+    <div class="progress-card rs-fade-in">
+      <div class="progress-steps">
+        <div class="step completed">
+          <div class="step-circle">
+            <ion-icon name="checkmark"></ion-icon>
+          </div>
+          <span>Personal</span>
+        </div>
+        <div class="step-line active"></div>
+        <div class="step active">
+          <div class="step-circle">2</div>
+          <span>Vehicle</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <form [formGroup]="signupForm" class="form-section rs-slide-in">
+      
+      <!-- Vehicle Type -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="car-sport-outline"></ion-icon>
+          Vehicle Type *
+        </label>
+        <div class="select-wrapper">
+          <ion-select formControlName="vehicleType" placeholder="Select your vehicle type" interface="action-sheet">
+            <ion-select-option value="car">🚗 Car</ion-select-option>
+            <ion-select-option value="suv">🚙 SUV</ion-select-option>
+            <ion-select-option value="van">🚐 Van</ion-select-option>
+            <ion-select-option value="coaster">🚌 Coaster</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <!-- Vehicle Registration -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="document-text-outline"></ion-icon>
+          Vehicle Registration Number *
+        </label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="text" 
+            formControlName="vehicleRegistration" 
+            placeholder="ABC-123">
+          </ion-input>
+        </div>
+      </div>
+
+      <!-- License Number -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="card-outline"></ion-icon>
+          Driving License Number *
+        </label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="text" 
+            formControlName="licenseNumber" 
+            placeholder="Enter license number">
+          </ion-input>
+        </div>
+      </div>
+
+      <!-- Smart Card Number -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="wallet-outline"></ion-icon>
+          Driver Smart Card Number *
+        </label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="text" 
+            formControlName="smartCardNumber" 
+            placeholder="Enter smart card number">
+          </ion-input>
+        </div>
+      </div>
+
+      <!-- Document Upload Note -->
+      <div class="upload-note">
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+        <div class="note-content">
+          <h4>Document Upload</h4>
+          <p>Admin will contact you for document verification. Please keep ready:</p>
+          <ul>
+            <li>CNIC (Front & Back)</li>
+            <li>Driving License</li>
+            <li>Driver Picture</li>
+            <li>Vehicle Documents</li>
+            <li>Car Pictures</li>
+            <li>Smart Card</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button 
+        expand="block" 
+        class="submit-button"
+        (click)="submitRegistration()"
+        [disabled]="signupForm.invalid">
+        Submit Registration
+        <ion-icon slot="end" name="checkmark-done"></ion-icon>
+      </ion-button>
+
+    </form>
+
+  </div>
+</ion-content>

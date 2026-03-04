@@ -1,0 +1,7 @@
+{
+  "name": "ridenserve",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

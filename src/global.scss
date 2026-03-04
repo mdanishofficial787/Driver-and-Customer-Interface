@@ -1,0 +1,298 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* ============================================
+   RIDENSERVE - PROFESSIONAL UI/UX STYLES
+   ============================================ */
+
+/* Custom Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Enhanced Color Palette */
+:root {
+  --rs-primary: #5B5FFF;
+  --rs-primary-dark: #4448E6;
+  --rs-primary-light: #8589FF;
+  --rs-primary-tint: #F0F0FF;
+  
+  --rs-secondary: #FF6B9D;
+  --rs-secondary-dark: #E6527E;
+  --rs-secondary-light: #FF8FB5;
+  
+  --rs-success: #00D68F;
+  --rs-warning: #FFAA00;
+  --rs-danger: #FF3D71;
+  --rs-info: #0095FF;
+  
+  --rs-dark: #1A1A2E;
+  --rs-medium: #6B7280;
+  --rs-light: #F3F4F6;
+  --rs-white: #FFFFFF;
+  
+  --rs-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --rs-gradient-success: linear-gradient(135deg, #00D68F 0%, #00B074 100%);
+  --rs-gradient-danger: linear-gradient(135deg, #FF6B9D 0%, #FF3D71 100%);
+  
+  --rs-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --rs-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --rs-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  
+  --rs-border-radius: 16px;
+  --rs-border-radius-sm: 8px;
+  --rs-border-radius-lg: 24px;
+}
+
+/* Override Ionic Colors */
+ion-content {
+  --background: #FAFAFA;
+}
+
+/* Enhanced Cards */
+.rs-card {
+  border-radius: var(--rs-border-radius);
+  box-shadow: var(--rs-shadow-sm);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--rs-shadow-md);
+  }
+}
+
+/* Enhanced Buttons */
+.rs-button {
+  --border-radius: var(--rs-border-radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  height: 56px;
+  font-size: 16px;
+  box-shadow: var(--rs-shadow-sm);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--rs-shadow-md);
+  }
+}
+
+/* Glassmorphism Effect */
+.rs-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animated Gradient Text */
+.rs-gradient-text {
+  background: var(--rs-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.rs-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.95); }
+}
+
+.rs-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Slide In Animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rs-slide-in {
+  animation: slideInUp 0.5s ease-out;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rs-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Global override: ensure status cards show a white outer edge instead of a dark ring */
+.status-card {
+  border: 8px solid #fff !important;
+  box-shadow: 0 12px 32px #fff !important;
+  background-clip: padding-box !important;
+}
+
+/* Reusable shadow frame used for submitted/status boxes (dark outer shadow + white inner border) */
+.shadow-frame {
+  border-radius: 12px;
+  border: 8px solid #fff;
+  background-clip: padding-box;
+  box-shadow: none !important;
+}
+
+/* Remove yellow decorative frames/borders globally */
+svg[fill="#ffff00"],
+svg[fill="#FFFF00"],
+svg[stroke="#ffff00"],
+svg[stroke="#FFFF00"],
+[class*="yellow"],
+[class*="frame"],
+[class*="curve"],
+.yellow-frame,
+.decorative-frame,
+.yellow-curve {
+  display: none !important;
+}
+
+/* Enhanced Input Fields */
+.rs-input {
+  ion-item {
+    --background: var(--rs-white);
+    --border-radius: var(--rs-border-radius-sm);
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    border: 2px solid var(--rs-light);
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    
+    &.item-has-focus {
+      border-color: var(--rs-primary);
+      box-shadow: 0 0 0 4px rgba(91, 95, 255, 0.1);
+    }
+  }
+  
+  ion-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--rs-dark);
+    margin-bottom: 8px;
+  }
+}
+
+/* Status Badge */
+.rs-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  
+  &.success {
+    background: var(--rs-gradient-success);
+    color: white;
+  }
+  
+  &.warning {
+    background: var(--rs-warning);
+    color: white;
+  }
+  
+  &.danger {
+    background: var(--rs-gradient-danger);
+    color: white;
+  }
+}
+
+/* Enhanced Toolbar */
+ion-toolbar {
+  --background: var(--rs-gradient-primary);
+  --color: white;
+  --border-width: 0;
+  --min-height: 60px;
+  
+  ion-title {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Smooth Scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rs-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rs-medium);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--rs-dark);
+  }
+}
+
+/* Responsive Typography */
+h1 { font-size: clamp(28px, 5vw, 36px); }
+h2 { font-size: clamp(24px, 4vw, 30px); }
+h3 { font-size: clamp(20px, 3vw, 24px); }
+h4 { font-size: clamp(18px, 2.5vw, 20px); }
+p { font-size: clamp(14px, 2vw, 16px); }
+
+/* Loading Spinner Custom */
+.rs-spinner {
+  --color: var(--rs-primary);
+  transform: scale(1.5);
+}

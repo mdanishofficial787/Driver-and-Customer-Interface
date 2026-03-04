@@ -1,0 +1,327 @@
+.verification-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.status-card h2 {
+  margin-top: 0;
+}
+
+.doc-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 18px 0;
+  color: rgba(26,26,46,0.85);
+}
+
+.status-card .status-message {
+  color: rgba(0,0,0,0.75);
+}
+
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 12px 0 18px 0;
+}
+
+.upload-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Styled file button + hidden native input */
+.file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(91,95,255,0.08);
+  width: 100%;
+}
+.file-btn span {
+  pointer-events: none;
+}
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.filename {
+  font-size: 13px;
+  color: rgba(26,26,46,0.7);
+}
+
+.file-label {
+  font-weight: 600;
+  color: rgba(26,26,46,0.9);
+}
+
+/* Upload card wrapper (centered white card) */
+.upload-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(17,24,39,0.06);
+  max-width: 760px;
+  margin: 0 auto 26px auto;
+  text-align: center;
+}
+
+.upload-card h2 {
+  margin-bottom: 6px;
+}
+
+.upload-card .doc-list {
+  color: rgba(26,26,46,0.7);
+}
+
+/* Make the last file input (Smart Card) span full width on wide screens */
+.upload-grid .upload-item:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+/* Submit button inside upload card */
+.upload-card ion-button {
+  margin-top: 18px;
+  --border-radius: 8px;
+  height: 48px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .upload-grid { grid-template-columns: 1fr; }
+  .upload-card { padding: 20px; }
+}
+
+/* Purple header section to match other signup pages */
+.header-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 320px;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 40px 40px;
+  color: white;
+  margin-bottom: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
+}
+.header-section .icon-wrapper {
+  display: none; /* icon removed from header */
+}
+.header-section .header-icon {
+  display: none;
+}
+.header-section h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 8px 0 6px 0;
+}
+.header-section .subtitle {
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+/* make toolbar transparent so gradient shows through at top */
+.custom-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  --color: white;
+  --icon-font-size: 22px;
+  font-weight: 600;
+}
+
+.status-card {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.status-icon {
+  font-size: 120px;
+  margin-bottom: 20px;
+  
+  &.pending {
+    color: var(--ion-color-warning);
+    animation: pulse 2s infinite;
+  }
+  
+  &.approved {
+    color: var(--ion-color-success);
+  }
+  
+  &.rejected {
+    color: var(--ion-color-danger);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--ion-color-dark);
+}
+
+.status-message {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Ensure approved/verified text is fully visible above light backgrounds */
+.status-card h2 {
+  color: #111 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.status-card .status-message {
+  color: rgba(26,26,46,0.85) !important;
+  opacity: 1 !important;
+}
+
+.info-card {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 30px 0;
+  text-align: left;
+  display: flex;
+  gap: 15px;
+  backdrop-filter: blur(10px);
+  
+  &.error {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+  }
+  
+  > ion-icon {
+    font-size: 32px;
+    color: #667eea;
+    flex-shrink: 0;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #667eea;
+  }
+  
+  ul {
+    margin: 10px 0;
+    padding-left: 20px;
+    
+    li {
+      margin: 8px 0;
+      color: #667eea;
+    }
+  }
+  
+  .time-estimate {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: #667eea;
+    font-weight: 600;
+    
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+ion-button {
+  margin-top: 20px;
+  --border-radius: 8px;
+  height: 48px;
+  font-weight: 600;
+}
+
+.support-section {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  
+  ion-icon {
+    font-size: 32px;
+    color: #667eea;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin: 5px 0;
+    color: #667eea;
+    font-weight: 500;
+  }
+  
+  a {
+    color: #667eea;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+  }
+}

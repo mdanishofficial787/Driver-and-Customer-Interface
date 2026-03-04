@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="customer-content">
+
+  <div class="dashboard-header">
+    <div class="header-top">
+      <div>
+        <h1>Welcome, {{ customerName }}!</h1>
+        <p class="subtitle">Manage your rides & bookings</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-container">
+    <div class="customer-options-grid">
+      <ion-card button (click)="goMonthlyPickup()" class="option-card">
+        <ion-card-content>
+          <div class="option-left"><div class="option-num">1</div></div>
+          <div class="option-right"><h3>Monthly Pickup</h3></div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card button (click)="goScheduleRide()" class="option-card">
+        <ion-card-content>
+          <div class="option-left"><div class="option-num">2</div></div>
+          <div class="option-right"><h3>Schedule Ride</h3></div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card button (click)="goHireDriver()" class="option-card">
+        <ion-card-content>
+          <div class="option-left"><div class="option-num">3</div></div>
+          <div class="option-right"><h3>Hire Driver</h3></div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card button (click)="goTravel()" class="option-card">
+        <ion-card-content>
+          <div class="option-left"><div class="option-num">4</div></div>
+          <div class="option-right"><h3>Travel & Tourism</h3></div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

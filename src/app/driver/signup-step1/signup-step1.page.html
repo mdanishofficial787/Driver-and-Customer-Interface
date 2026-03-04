@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  <div class="signup-container">
+
+    <!-- Header -->
+    <div class="header-section">
+      <div class="icon-wrapper">
+        <ion-icon name="person-circle-outline" class="header-icon"></ion-icon>
+      </div>
+      <h1>Driver Registration</h1>
+      <p class="subtitle">Step 1 of 2 - Personal Information</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="progress-card">
+      <div class="progress-steps">
+        <div class="step active">
+          <div class="step-circle">1</div>
+          <span class="step-label">Personal</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <span class="step-label">Vehicle</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="signupForm" class="form-section">
+
+      <!-- Full Name -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="person-outline"></ion-icon>
+          Full Name *
+        </label>
+        <div class="input-box" [class.focused]="isNameFocused" [class.valid]="signupForm.get('fullName')?.valid" [class.error-box]="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+          <ion-input
+            type="text"
+            formControlName="fullName"
+            placeholder="Enter your full name"
+            (ionFocus)="isNameFocused=true"
+            (ionBlur)="isNameFocused=false">
+          </ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('fullName')?.valid && signupForm.get('fullName')?.touched"></ion-icon>
+        </div>
+        <p class="error-msg" *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+          <ion-icon name="alert-circle"></ion-icon> Minimum 3 characters required
+        </p>
+      </div>
+
+      <!-- CNIC -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="card-outline"></ion-icon>
+          CNIC Number *
+        </label>
+        <div class="input-box" [class.focused]="isCnicFocused" [class.valid]="signupForm.get('cnic')?.valid" [class.error-box]="signupForm.get('cnic')?.invalid && signupForm.get('cnic')?.touched">
+          <ion-input
+            type="text"
+            formControlName="cnic"
+            placeholder="00000-0000000-0"
+            (ionInput)="formatCNIC($event)"
+            (ionFocus)="isCnicFocused=true"
+            (ionBlur)="isCnicFocused=false"
+            maxlength="15">
+          </ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('cnic')?.valid && signupForm.get('cnic')?.touched"></ion-icon>
+        </div>
+        <p class="error-msg" *ngIf="signupForm.get('cnic')?.invalid && signupForm.get('cnic')?.touched">
+          <ion-icon name="alert-circle"></ion-icon> Format: 12345-1234567-1
+        </p>
+      </div>
+
+      <!-- Mobile -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="call-outline"></ion-icon>
+          Mobile Number *
+        </label>
+        <div class="input-box" [class.focused]="isMobileFocused" [class.valid]="signupForm.get('mobile')?.valid" [class.error-box]="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
+          <ion-input
+            type="tel"
+            formControlName="mobile"
+            placeholder="03XXXXXXXXX"
+            (ionFocus)="isMobileFocused=true"
+            (ionBlur)="isMobileFocused=false"
+            maxlength="11">
+          </ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('mobile')?.valid && signupForm.get('mobile')?.touched"></ion-icon>
+        </div>
+        <p class="error-msg" *ngIf="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
+          <ion-icon name="alert-circle"></ion-icon> Format: 03001234567
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label class="input-label">
+          <ion-icon name="mail-outline"></ion-icon>
+          Email Address *
+        </label>
+        <div class="input-box" [class.focused]="isEmailFocused" [class.valid]="signupForm.get('email')?.valid" [class.error-box]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          <ion-input
+            type="email"
+            formControlName="email"
+            placeholder="example@email.com"
+            (ionFocus)="isEmailFocused=true"
+            (ionBlur)="isEmailFocused=false">
+          </ion-input>
+          <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('email')?.valid && signupForm.get('email')?.touched"></ion-icon>
+        </div>
+        <p class="error-msg" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          <ion-icon name="alert-circle"></ion-icon> Enter a valid email address
+        </p>
+      </div>
+
+      <!-- Security Note -->
+      <div class="security-note">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <div>
+          <h4>Secure & Encrypted</h4>
+          <p>Your data is protected and only used for verification</p>
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <ion-button expand="block" class="next-btn" (click)="nextStep()" [disabled]="signupForm.invalid">
+        Continue to Vehicle Details
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

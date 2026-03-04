@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Location Setup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="location-content">
+  <div class="container">
+    <h2>Set Your Preferred Location & Timing</h2>
+
+    <ion-button expand="block" (click)="enableGPS()">Enable GPS</ion-button>
+
+    <form [formGroup]="locationForm">
+      <ion-item>
+        <ion-label position="stacked">Preferred Route</ion-label>
+        <ion-input formControlName="preferredRoute" placeholder="e.g., Main Road to City Center"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Preferred Timing</ion-label>
+        <ion-input formControlName="preferredTiming" placeholder="e.g., Morning 9-11am"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Manual Address (optional)</ion-label>
+        <ion-input formControlName="manualAddress" placeholder="Enter address"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="saveLocation()">Save & Continue</ion-button>
+    </form>
+  </div>
+</ion-content>
