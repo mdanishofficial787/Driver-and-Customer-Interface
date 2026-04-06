@@ -48,7 +48,7 @@
           Vehicle Type *
         </label>
         <div class="select-wrapper">
-          <ion-select formControlName="vehicleType" placeholder="Select your vehicle type" interface="action-sheet">
+          <ion-select formControlName="vehicleType" placeholder="Select your vehicle type" interface="popover">
             <ion-select-option value="car">🚗 Car</ion-select-option>
             <ion-select-option value="suv">🚙 SUV</ion-select-option>
             <ion-select-option value="van">🚐 Van</ion-select-option>
@@ -70,6 +70,9 @@
             placeholder="ABC-123">
           </ion-input>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('vehicleRegistration')?.invalid && signupForm.get('vehicleRegistration')?.touched">
+          Please enter a valid registration number (alphanumeric, 5-15 characters).
+        </p>
       </div>
 
       <!-- License Number -->
@@ -85,6 +88,9 @@
             placeholder="Enter license number">
           </ion-input>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('licenseNumber')?.invalid && signupForm.get('licenseNumber')?.touched">
+          Please enter a valid license number (alphanumeric, 6-20 characters).
+        </p>
       </div>
 
       <!-- Smart Card Number -->
@@ -100,6 +106,9 @@
             placeholder="Enter smart card number">
           </ion-input>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('smartCardNumber')?.invalid && signupForm.get('smartCardNumber')?.touched">
+          Please enter a valid smart card number (alphanumeric, 6-20 characters).
+        </p>
       </div>
 
       <!-- Document Upload Note -->

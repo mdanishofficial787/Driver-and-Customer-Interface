@@ -336,3 +336,28 @@ h1 {
     flex: 1;
   }
 }
+
+@media (max-width: 767px) {
+  .cards-container {
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .selection-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-content {
+    padding: 22px 18px;
+  }
+
+  .card-arrow {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 12px;
+    align-self: flex-end;
+  }
+}

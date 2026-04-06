@@ -15,7 +15,11 @@ export class CustomerSignupStep1Page implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signupForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      fullName: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[A-Za-z]+$/)
+      ]],
       mobile: ['', [Validators.required, Validators.pattern(/^03\d{9}$/)]],
       currentLocation: [''],
       pickupLocation: ['', Validators.required],

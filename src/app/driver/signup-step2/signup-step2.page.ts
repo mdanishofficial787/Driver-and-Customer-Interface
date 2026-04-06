@@ -15,17 +15,25 @@ export class SignupStep2Page implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private alertController: AlertController
-  ) { 
+  ) {
     this.signupForm = this.formBuilder.group({
       vehicleType: ['', Validators.required],
-      vehicleRegistration: ['', Validators.required],
-      licenseNumber: ['', Validators.required],
-      smartCardNumber: ['', Validators.required]
+      vehicleRegistration: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*\d)[A-Za-z0-9\- ]{5,15}$/)
+      ]],
+      licenseNumber: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*\d)[A-Za-z0-9\-]{6,20}$/)
+      ]],
+      smartCardNumber: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*\d)[A-Za-z0-9]{6,20}$/)
+      ]]
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async submitRegistration() {
     if (this.signupForm.valid) {
@@ -43,6 +51,10 @@ export class SignupStep2Page implements OnInit {
         }]
       });
       await alert.present();
+    } else {
+      Object.keys(this.signupForm.controls).forEach(key => {
+        this.signupForm.get(key)?.markAsTouched();
+      });
     }
   }
 }

@@ -46,6 +46,9 @@
           <ion-input type="text" formControlName="fullName" placeholder="Your full name" (ionFocus)="isNameFocused=true" (ionBlur)="isNameFocused=false"></ion-input>
           <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('fullName')?.valid && signupForm.get('fullName')?.touched"></ion-icon>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+          <ion-icon name="alert-circle"></ion-icon> Enter letters only, no spaces.
+        </p>
       </div>
 
       <!-- Phone -->

@@ -16,7 +16,11 @@ export class SignupStep1Page implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signupForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      fullName: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[A-Za-z]+$/)
+      ]],
       cnic: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{7}-\d{1}$/)]],
       mobile: ['', [Validators.required, Validators.pattern(/^03\d{9}$/)]],
       email: ['', [Validators.required, Validators.email]]

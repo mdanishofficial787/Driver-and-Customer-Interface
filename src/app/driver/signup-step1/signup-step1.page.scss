@@ -318,3 +318,55 @@ h1 {
     font-size: 20px;
   }
 }
+
+@media (max-width: 768px) {
+  .header-section {
+    height: auto;
+    padding: 70px 18px 48px;
+    border-radius: 0 0 26px 26px;
+  }
+
+  .header-icon {
+    font-size: 70px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .progress-card {
+    margin: -32px 14px 0;
+    padding: 18px 16px;
+    width: auto;
+  }
+
+  .form-section {
+    padding: 24px 16px 42px;
+    max-width: 100%;
+  }
+
+  .input-label {
+    font-size: 14px;
+  }
+
+  .input-box,
+  .select-wrapper,
+  .input-wrapper {
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+  }
+
+  ion-input,
+  ion-select {
+    width: 100%;
+  }
+
+  .back-btn {
+    margin-left: 0;
+  }
+}
