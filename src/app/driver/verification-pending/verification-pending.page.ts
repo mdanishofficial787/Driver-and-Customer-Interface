@@ -46,7 +46,7 @@ export class VerificationPendingPage implements OnInit {
     await alert.present();
   }
 
-  onFileChange(event: Event, field: string) {
+  async onFileChange(event: Event, field: string) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
     const file = input.files[0];

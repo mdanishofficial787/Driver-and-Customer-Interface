@@ -308,6 +308,106 @@ h3 {
   }
 }
 
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .dashboard-header {
+    height: auto;
+    padding: 40px 20px 30px;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 20px;
+  }
+
+  .header-top h1 {
+    font-size: 24px;
+  }
+
+  .header-top .subtitle {
+    font-size: 14px;
+  }
+
+  .form-wrapper {
+    padding: 16px;
+  }
+
+  .location-card,
+  .preferences-section ion-card {
+    padding: 20px 16px;
+    margin-bottom: 16px;
+  }
+
+  .gps-btn {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .submit-btn {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-header {
+    padding: 30px 16px;
+  }
+
+  .header-top h1 {
+    font-size: 20px;
+  }
+
+  .header-top .subtitle {
+    font-size: 13px;
+  }
+
+  .form-wrapper {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  .location-card,
+  .preferences-section ion-card {
+    padding: 16px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  ionic-button,
+  .gps-btn,
+  .submit-btn {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  ion-item {
+    --min-height: 44px;
+  }
+
+  ion-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard-header {
+    padding: 24px 12px;
+  }
+
+  .header-top h1 {
+    font-size: 18px;
+  }
+
+  .form-wrapper {
+    padding: 10px;
+  }
+
+  .location-card,
+  .preferences-section ion-card {
+    padding: 12px 10px;
+  }
+}
+
 .divider {
   text-align: center;
   margin: 25px 0;

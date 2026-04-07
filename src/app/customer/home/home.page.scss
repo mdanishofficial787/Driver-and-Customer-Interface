@@ -9,13 +9,57 @@
 .stat-card { text-align:center; background:white; box-shadow:0 10px 26px rgba(91,95,255,0.06); }
 .stat-card ion-icon { font-size:36px; color:var(--ion-color-primary); }
 
-.customer-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.customer-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 820px; margin: 0 auto; }
 .option-card { cursor: pointer; background: transparent; border-radius: 10px; }
 .option-card ion-card-content { display:flex; align-items:center; gap:18px; padding: 14px 22px; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(17,24,39,0.02); }
 .option-left .option-num { background: #00c06b; color: white; width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-weight:800; box-shadow: 0 6px 18px rgba(0,192,107,0.12); }
 .option-right h3 { margin: 0; font-size: 15px; font-weight:700; color: #111; }
-.customer-options-grid { max-width: 820px; margin: 0 auto; }
 .option-card:hover ion-card-content { transform: translateY(-4px); transition: transform 120ms ease; }
 
-/* Arrow inside Travel & Tourism card (small circular left-arrow) */
-/* (removed arrow from Home cards; Travel page now contains its own circular back icon) */
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .dashboard-header {
+    padding: 40px 20px 30px;
+    height: auto;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .header-top h1 {
+    font-size: 22px;
+  }
+  
+  .header-top .subtitle {
+    font-size: 14px;
+  }
+  
+  .stats-container {
+    padding: 16px;
+    min-height: auto;
+  }
+  
+  .customer-options-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 12px;
+  }
+  
+  .option-card ion-card-content {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  
+  .option-right h3 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .customer-options-grid {
+    gap: 10px;
+    padding: 0 8px;
+  }
+  
+  .option-card ion-card-content {
+    padding: 10px 12px;
+  }
+}

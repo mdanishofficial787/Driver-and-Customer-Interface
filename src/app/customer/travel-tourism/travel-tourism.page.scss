@@ -123,6 +123,65 @@
   }
 }
 
+@media (max-width: 600px) {
+  .form-toolbar {
+    height: 80px;
+    padding: 12px;
+  }
+  
+  .form-title {
+    font-size: 18px;
+  }
+  
+  .form-wrapper {
+    padding: 16px;
+  }
+  
+  .form-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h2 {
+    font-size: 20px;
+  }
+  
+  .form-header p {
+    font-size: 13px;
+  }
+  
+  .form-item {
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+  
+  .form-label {
+    font-size: 12px;
+  }
+  
+  .submit-btn {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-wrapper {
+    padding: 12px;
+  }
+  
+  .form-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .form-item {
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+}
+
 .status-card {
   background: white;
   padding: 40px 28px;

@@ -273,3 +273,195 @@ ion-select {
 .next-btn[disabled] { --background: #C5C5D9; opacity: 0.7; }
 
 ion-icon { font-size: 20px; margin-left: 8px; }
+
+@media (max-width: 768px) {
+  .header-section {
+    height: auto;
+    padding: 60px 18px 52px;
+    border-radius: 0 0 28px 28px;
+  }
+
+  .header-icon {
+    font-size: 70px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .progress-card {
+    margin: -34px 14px 0;
+    padding: 18px 16px;
+    width: auto;
+  }
+
+  .form-section {
+    padding: 24px 16px 40px;
+    max-width: 100%;
+  }
+
+  .input-label {
+    font-size: 14px;
+  }
+
+  .input-wrapper,
+  .select-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  ion-input,
+  ion-select {
+    width: 100%;
+  }
+
+  .upload-note,
+  .security-note {
+    margin: 24px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-section {
+    padding: 50px 16px 40px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .header-icon {
+    font-size: 60px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .progress-card {
+    margin: -28px 10px 0;
+    padding: 14px 12px;
+    border-radius: 16px;
+  }
+
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
+
+  .step-line {
+    margin: 0 4px 28px 4px;
+  }
+
+  .form-section {
+    padding: 20px 14px 36px;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .input-label {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  ion-input,
+  ion-select {
+    --padding-start: 14px;
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+    font-size: 14px;
+  }
+
+  .upload-note,
+  .security-note {
+    padding: 14px 16px;
+    margin: 20px 0;
+    border-radius: 12px;
+  }
+
+  .upload-note h4,
+  .security-note h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .upload-note p,
+  .security-note p {
+    font-size: 12px;
+  }
+
+  .submit-button,
+  .next-btn {
+    height: 48px;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-section {
+    padding: 40px 12px 32px;
+  }
+
+  .header-icon {
+    font-size: 50px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .progress-card {
+    margin: -24px 8px 0;
+    padding: 12px 10px;
+  }
+
+  .step-label {
+    font-size: 10px;
+  }
+
+  .form-section {
+    padding: 16px 10px 30px;
+  }
+
+  .input-group {
+    margin-bottom: 14px;
+  }
+
+  .input-label {
+    font-size: 12px;
+  }
+
+  ion-input,
+  ion-select {
+    --padding-start: 12px;
+    font-size: 13px;
+  }
+
+  .upload-note,
+  .security-note {
+    padding: 12px 14px;
+  }
+
+  .submit-button,
+  .next-btn {
+    height: 44px;
+    font-size: 13px;
+  }
+}

@@ -142,9 +142,76 @@
 }
 
 /* Responsive: single column on mobile */
+@media (max-width: 768px) {
+  .verification-container {
+    padding: 30px 16px;
+  }
+  
+  .upload-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .upload-card h2 {
+    font-size: 20px;
+  }
+  
+  .section-header h3 {
+    font-size: 15px;
+  }
+  
+  .file-label {
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 600px) {
   .upload-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .verification-container {
+    padding: 20px 12px;
+    min-height: auto;
+  }
+  
+  .upload-card {
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(17,24,39,0.04);
+  }
+  
+  .upload-card h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .file-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  .filename {
+    font-size: 12px;
+  }
+  
+  .help-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 400px) {
+  .upload-card {
+    padding: 12px;
+  }
+  
+  .upload-grid {
+    gap: 10px;
+  }
+  
+  .file-label {
+    font-size: 12px;
   }
 }
 
