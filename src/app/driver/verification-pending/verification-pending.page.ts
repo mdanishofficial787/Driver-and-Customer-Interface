@@ -155,7 +155,7 @@ export class VerificationPendingPage implements OnInit {
             const minSide = Math.min(width, height);
             const maxSide = Math.max(width, height);
 
-            if (minSide < 600 || maxSide < 900) {
+            if (minSide < 800 || maxSide < 1200) {
               return resolve({
                 valid: false,
                 message: 'Document image is too small. Please upload a clear, high-resolution scan or photo of the actual document.'
@@ -168,6 +168,11 @@ export class VerificationPendingPage implements OnInit {
                 message: 'Please upload a card-style document image (e.g. CNIC, license, smart card) in landscape orientation.'
               });
             }
+
+            const analysis = this.analyzeDocumentImage(img);
+            if (!analysis.valid) {
+              return resolve({ valid: false, message: analysis.message });
+            }
           }
 
           resolve({ valid: true });
@@ -179,6 +184,84 @@ export class VerificationPendingPage implements OnInit {
       reader.onerror = () => resolve({ valid: false, message: 'Unable to read the file. Please upload a valid image.' });
       reader.readAsDataURL(file);
     });
+  }
+
+  private analyzeDocumentImage(img: HTMLImageElement): { valid: boolean; message?: string } {
+    const canvas = document.createElement('canvas');
+    const maxDim = 200;
+    const ratio = Math.min(maxDim / img.width, maxDim / img.height, 1);
+    canvas.width = Math.round(img.width * ratio);
+    canvas.height = Math.round(img.height * ratio);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      return { valid: true };
+    }
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const { uniqueColors, edgeDensity } = this.computeImageMetrics(imageData);
+
+    if (uniqueColors > 180) {
+      return {
+        valid: false,
+        message: 'This image looks more like a photo than a scanned identity document. Please upload a clear picture of your CNIC, license, or smart card only.'
+      };
+    }
+
+    if (edgeDensity < 0.03) {
+      return {
+        valid: false,
+        message: 'This image appears too smooth and may not be a document scan. Please upload a clear photo of the actual document.'
+      };
+    }
+
+    if (edgeDensity > 0.40) {
+      return {
+        valid: false,
+        message: 'This image is too complex for a document photo. Please upload a clean, card-style image of the actual document.'
+      };
+    }
+
+    return { valid: true };
+  }
+
+  private computeImageMetrics(imageData: ImageData): { uniqueColors: number; edgeDensity: number } {
+    const { data, width, height } = imageData;
+    const colors = new Set<number>();
+    let edgeCount = 0;
+    let sampleCount = 0;
+
+    for (let y = 0; y < height - 1; y += 2) {
+      for (let x = 0; x < width - 1; x += 2) {
+        const idx = (y * width + x) * 4;
+        const r = data[idx];
+        const g = data[idx + 1];
+        const b = data[idx + 2];
+        const key = ((r >> 4) << 8) | ((g >> 4) << 4) | (b >> 4);
+        colors.add(key);
+
+        const rightIdx = idx + 4;
+        const downIdx = idx + width * 4;
+        const dr = Math.abs(r - data[rightIdx]);
+        const dg = Math.abs(g - data[rightIdx + 1]);
+        const db = Math.abs(b - data[rightIdx + 2]);
+        const downDr = Math.abs(r - data[downIdx]);
+        const downDg = Math.abs(g - data[downIdx + 1]);
+        const downDb = Math.abs(b - data[downIdx + 2]);
+        const horiz = Math.sqrt(dr * dr + dg * dg + db * db);
+        const vert = Math.sqrt(downDr * downDr + downDg * downDg + downDb * downDb);
+
+        if (horiz > 30 || vert > 30) {
+          edgeCount++;
+        }
+        sampleCount++;
+      }
+    }
+
+    return {
+      uniqueColors: colors.size,
+      edgeDensity: sampleCount ? edgeCount / sampleCount : 0
+    };
   }
 
   async submitDocuments() {
