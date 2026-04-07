@@ -93,13 +93,13 @@ export class VerificationPendingPage implements OnInit {
       return;
     }
 
-    // Image validation: Check if file is actually a valid image
+    // Image validation: Check if file is actually a valid image and meets document requirements
     if (file.type.startsWith('image/')) {
-      const isValidImage = await this.validateImageFile(file);
-      if (!isValidImage) {
+      const imageValidation = await this.validateImageFile(file, field);
+      if (!imageValidation.valid) {
         const alert = await this.alertController.create({
           header: 'Invalid Image',
-          message: 'File appears to be corrupted or not a valid image. Please upload a clear photo.',
+          message: imageValidation.message ?? 'File appears to be corrupted or not a valid image. Please upload a clear photo.',
           buttons: ['OK']
         });
         await alert.present();
@@ -125,16 +125,58 @@ export class VerificationPendingPage implements OnInit {
     }
   }
 
-  private validateImageFile(file: File): Promise<boolean> {
+  private isStrictDocumentField(field: string): boolean {
+    return [
+      'cnicFront',
+      'cnicBack',
+      'drivingLicenseFront',
+      'drivingLicenseBack',
+      'smartCardFront',
+      'smartCardBack',
+      'vehicleDocuments'
+    ].includes(field);
+  }
+
+  private validateImageFile(file: File, field: string): Promise<{ valid: boolean; message?: string }> {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
+        img.onload = () => {
+          const width = img.naturalWidth;
+          const height = img.naturalHeight;
+
+          if (!width || !height) {
+            return resolve({ valid: false, message: 'File appears to be corrupted or not a valid image.' });
+          }
+
+          if (this.isStrictDocumentField(field)) {
+            const ratio = width / height;
+            const minSide = Math.min(width, height);
+            const maxSide = Math.max(width, height);
+
+            if (minSide < 600 || maxSide < 900) {
+              return resolve({
+                valid: false,
+                message: 'Document image is too small. Please upload a clear, high-resolution scan or photo of the actual document.'
+              });
+            }
+
+            if (ratio < 1.2 || ratio > 2.4) {
+              return resolve({
+                valid: false,
+                message: 'Please upload a card-style document image (e.g. CNIC, license, smart card) in landscape orientation.'
+              });
+            }
+          }
+
+          resolve({ valid: true });
+        };
+        img.onerror = () => resolve({ valid: false, message: 'File appears to be corrupted or not a valid image.' });
         img.src = e.target?.result as string;
       };
-      reader.onerror = () => resolve(false);
+
+      reader.onerror = () => resolve({ valid: false, message: 'Unable to read the file. Please upload a valid image.' });
       reader.readAsDataURL(file);
     });
   }
