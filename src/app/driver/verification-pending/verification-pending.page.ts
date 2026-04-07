@@ -50,6 +50,65 @@ export class VerificationPendingPage implements OnInit {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
     const file = input.files[0];
+
+    // Validation: File type checking
+    const allowedMimeTypes: { [key: string]: string[] } = {
+      cnicFront: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      cnicBack: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      drivingLicenseFront: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      drivingLicenseBack: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      vehicleDocuments: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      smartCardFront: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      smartCardBack: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+      driverPicture: ['image/jpeg', 'image/png', 'image/webp'],
+      carFront: ['image/jpeg', 'image/png', 'image/webp'],
+      carBack: ['image/jpeg', 'image/png', 'image/webp'],
+      carLeft: ['image/jpeg', 'image/png', 'image/webp'],
+      carRight: ['image/jpeg', 'image/png', 'image/webp'],
+    };
+
+    // Check file mime type
+    const allowedTypes = allowedMimeTypes[field] || [];
+    if (!allowedTypes.includes(file.type)) {
+      const alert = await this.alertController.create({
+        header: 'Invalid File Type',
+        message: `Please upload a valid file (${allowedTypes.join(', ')})`,
+        buttons: ['OK']
+      });
+      await alert.present();
+      input.value = '';
+      return;
+    }
+
+    // File size validation: Max 5MB
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      const alert = await this.alertController.create({
+        header: 'File Too Large',
+        message: 'File size must be less than 5MB',
+        buttons: ['OK']
+      });
+      await alert.present();
+      input.value = '';
+      return;
+    }
+
+    // Image validation: Check if file is actually a valid image
+    if (file.type.startsWith('image/')) {
+      const isValidImage = await this.validateImageFile(file);
+      if (!isValidImage) {
+        const alert = await this.alertController.create({
+          header: 'Invalid Image',
+          message: 'File appears to be corrupted or not a valid image. Please upload a clear photo.',
+          buttons: ['OK']
+        });
+        await alert.present();
+        input.value = '';
+        return;
+      }
+    }
+
+    // Assign file to appropriate field
     switch (field) {
       case 'cnicFront': this.cnicFront = file; break;
       case 'cnicBack': this.cnicBack = file; break;
@@ -64,6 +123,20 @@ export class VerificationPendingPage implements OnInit {
       case 'carLeft': this.carLeft = file; break;
       case 'carRight': this.carRight = file; break;
     }
+  }
+
+  private validateImageFile(file: File): Promise<boolean> {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = () => resolve(false);
+      reader.readAsDataURL(file);
+    });
   }
 
   async submitDocuments() {

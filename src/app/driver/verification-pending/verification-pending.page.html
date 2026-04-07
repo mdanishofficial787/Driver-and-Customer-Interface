@@ -22,112 +22,139 @@
       <p class="status-message">Admin will contact you for document verification. Please keep ready:</p>
 
       <div class="upload-grid">
+        <!-- ID Documents Section -->
+        <div class="section-header">
+          <h3>Identity Documents</h3>
+        </div>
+        
         <div class="upload-item">
-          <label class="file-label">CNIC Front</label>
+          <label class="file-label">CNIC Front <span class="required">*</span></label>
+          <p class="help-text">Clear photo of CNIC front side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'cnicFront')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'cnicFront')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="cnicFront">{{ cnicFront.name }}</div>
+          <div class="filename" *ngIf="cnicFront"><ion-icon name="checkmark-circle"></ion-icon> {{ cnicFront.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">CNIC Back</label>
+          <label class="file-label">CNIC Back <span class="required">*</span></label>
+          <p class="help-text">Clear photo of CNIC back side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'cnicBack')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'cnicBack')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="cnicBack">{{ cnicBack.name }}</div>
+          <div class="filename" *ngIf="cnicBack"><ion-icon name="checkmark-circle"></ion-icon> {{ cnicBack.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Driving License Front</label>
+          <label class="file-label">Driving License Front <span class="required">*</span></label>
+          <p class="help-text">Clear photo of driving license front</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseFront')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseFront')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="drivingLicenseFront">{{ drivingLicenseFront.name }}</div>
+          <div class="filename" *ngIf="drivingLicenseFront"><ion-icon name="checkmark-circle"></ion-icon> {{ drivingLicenseFront.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Driving License Back</label>
+          <label class="file-label">Driving License Back <span class="required">*</span></label>
+          <p class="help-text">Clear photo of driving license back</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseBack')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'drivingLicenseBack')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="drivingLicenseBack">{{ drivingLicenseBack.name }}</div>
+          <div class="filename" *ngIf="drivingLicenseBack"><ion-icon name="checkmark-circle"></ion-icon> {{ drivingLicenseBack.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Vehicle Documents</label>
+          <label class="file-label">Smart Card Front <span class="required">*</span></label>
+          <p class="help-text">Clear photo of smart card front</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'vehicleDocuments')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardFront')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="vehicleDocuments">{{ vehicleDocuments.name }}</div>
+          <div class="filename" *ngIf="smartCardFront"><ion-icon name="checkmark-circle"></ion-icon> {{ smartCardFront.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Smart Card Front</label>
+          <label class="file-label">Smart Card Back <span class="required">*</span></label>
+          <p class="help-text">Clear photo of smart card back</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardFront')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardBack')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="smartCardFront">{{ smartCardFront.name }}</div>
+          <div class="filename" *ngIf="smartCardBack"><ion-icon name="checkmark-circle"></ion-icon> {{ smartCardBack.name }}</div>
+        </div>
+
+        <!-- Vehicle Section -->
+        <div class="section-header">
+          <h3>Vehicle Documents</h3>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Smart Card Back</label>
+          <label class="file-label">Vehicle Documents <span class="required">*</span></label>
+          <p class="help-text">Vehicle registration papers or ownership proof</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'smartCardBack')" accept="image/*,application/pdf">
+            <input class="file-input" type="file" (change)="onFileChange($event,'vehicleDocuments')" accept="image/jpeg,image/png,image/webp,application/pdf">
           </label>
-          <div class="filename" *ngIf="smartCardBack">{{ smartCardBack.name }}</div>
+          <div class="filename" *ngIf="vehicleDocuments"><ion-icon name="checkmark-circle"></ion-icon> {{ vehicleDocuments.name }}</div>
+        </div>
+
+        <!-- Personal & Car Photos Section -->
+        <div class="section-header">
+          <h3>Photos</h3>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Driver Picture</label>
+          <label class="file-label">Driver Picture <span class="required">*</span></label>
+          <p class="help-text">Clear passport-style photo of yourself</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'driverPicture')" accept="image/*">
+            <input class="file-input" type="file" (change)="onFileChange($event,'driverPicture')" accept="image/jpeg,image/png,image/webp">
           </label>
-          <div class="filename" *ngIf="driverPicture">{{ driverPicture.name }}</div>
+          <div class="filename" *ngIf="driverPicture"><ion-icon name="checkmark-circle"></ion-icon> {{ driverPicture.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Car Front</label>
+          <label class="file-label">Car Front <span class="required">*</span></label>
+          <p class="help-text">Clear photo of car front side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'carFront')" accept="image/*">
+            <input class="file-input" type="file" (change)="onFileChange($event,'carFront')" accept="image/jpeg,image/png,image/webp">
           </label>
-          <div class="filename" *ngIf="carFront">{{ carFront.name }}</div>
+          <div class="filename" *ngIf="carFront"><ion-icon name="checkmark-circle"></ion-icon> {{ carFront.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Car Back</label>
+          <label class="file-label">Car Back <span class="required">*</span></label>
+          <p class="help-text">Clear photo of car back side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'carBack')" accept="image/*">
+            <input class="file-input" type="file" (change)="onFileChange($event,'carBack')" accept="image/jpeg,image/png,image/webp">
           </label>
-          <div class="filename" *ngIf="carBack">{{ carBack.name }}</div>
+          <div class="filename" *ngIf="carBack"><ion-icon name="checkmark-circle"></ion-icon> {{ carBack.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Car Left</label>
+          <label class="file-label">Car Left <span class="required">*</span></label>
+          <p class="help-text">Clear photo of car left side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'carLeft')" accept="image/*">
+            <input class="file-input" type="file" (change)="onFileChange($event,'carLeft')" accept="image/jpeg,image/png,image/webp">
           </label>
-          <div class="filename" *ngIf="carLeft">{{ carLeft.name }}</div>
+          <div class="filename" *ngIf="carLeft"><ion-icon name="checkmark-circle"></ion-icon> {{ carLeft.name }}</div>
         </div>
 
         <div class="upload-item">
-          <label class="file-label">Car Right</label>
+          <label class="file-label">Car Right <span class="required">*</span></label>
+          <p class="help-text">Clear photo of car right side</p>
           <label class="file-btn">
             <span>Select file</span>
-            <input class="file-input" type="file" (change)="onFileChange($event,'carRight')" accept="image/*">
+            <input class="file-input" type="file" (change)="onFileChange($event,'carRight')" accept="image/jpeg,image/png,image/webp">
           </label>
-          <div class="filename" *ngIf="carRight">{{ carRight.name }}</div>
+          <div class="filename" *ngIf="carRight"><ion-icon name="checkmark-circle"></ion-icon> {{ carRight.name }}</div>
         </div>
       </div>
 
