@@ -112,16 +112,19 @@ export class VerificationPendingPage implements OnInit {
     }
   }
 
-  private isStrictDocumentField(field: string): boolean {
+  private isCardDocumentField(field: string): boolean {
     return [
       'cnicFront',
       'cnicBack',
       'drivingLicenseFront',
       'drivingLicenseBack',
       'smartCardFront',
-      'smartCardBack',
-      'vehicleDocuments'
+      'smartCardBack'
     ].includes(field);
+  }
+
+  private isPaperDocumentField(field: string): boolean {
+    return ['vehicleDocuments'].includes(field);
   }
 
   private validateImageFile(file: File, field: string): Promise<{ valid: boolean; message?: string }> {
@@ -137,8 +140,8 @@ export class VerificationPendingPage implements OnInit {
             return resolve({ valid: false, message: 'File appears to be corrupted or not a valid image.' });
           }
 
-          if (this.isStrictDocumentField(field)) {
-            const analysis = this.analyzeDocumentImage(img);
+          if (this.isCardDocumentField(field) || this.isPaperDocumentField(field)) {
+            const analysis = this.analyzeDocumentImage(img, field);
             if (!analysis.valid) {
               return resolve({ valid: false, message: analysis.message });
             }
@@ -155,9 +158,9 @@ export class VerificationPendingPage implements OnInit {
     });
   }
 
-  private analyzeDocumentImage(img: HTMLImageElement): { valid: boolean; message?: string } {
+  private analyzeDocumentImage(img: HTMLImageElement, field: string): { valid: boolean; message?: string } {
     const canvas = document.createElement('canvas');
-    const maxDim = 200;
+    const maxDim = 250;
     const ratio = Math.min(maxDim / img.width, maxDim / img.height, 1);
     canvas.width = Math.round(img.width * ratio);
     canvas.height = Math.round(img.height * ratio);
@@ -169,33 +172,59 @@ export class VerificationPendingPage implements OnInit {
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const { uniqueColors, edgeDensity, avgSaturation } = this.computeImageMetrics(imageData);
+    const ratioWH = img.width / img.height;
 
-    if (uniqueColors > 120) {
-      return {
-        valid: false,
-        message: 'This image looks more like a photo than a document scan. Please upload a clear photo of the correct identity document.'
-      };
+    if (this.isCardDocumentField(field)) {
+      if (ratioWH < 1.2 || ratioWH > 2.4) {
+        return {
+          valid: false,
+          message: 'Please upload a card-style document photo in landscape orientation.'
+        };
+      }
+
+      if (uniqueColors > 100) {
+        return {
+          valid: false,
+          message: 'This image is too colorful for a card document. Please upload the actual document only.'
+        };
+      }
+
+      if (avgSaturation > 0.32) {
+        return {
+          valid: false,
+          message: 'This image appears too colorful. Please upload a clear scan/photo of the actual document.'
+        };
+      }
+
+      if (edgeDensity < 0.05) {
+        return {
+          valid: false,
+          message: 'This image does not contain enough document detail. Please upload a clearer document photo.'
+        };
+      }
+
+      if (edgeDensity > 0.42) {
+        return {
+          valid: false,
+          message: 'This image is too complex for a document photo. Please upload only the actual document.'
+        };
+      }
     }
 
-    if (avgSaturation > 0.38) {
-      return {
-        valid: false,
-        message: 'This image is too colorful for a document photo. Please upload a clear photo of the actual document only.'
-      };
-    }
+    if (this.isPaperDocumentField(field)) {
+      if (avgSaturation > 0.4 && uniqueColors > 140) {
+        return {
+          valid: false,
+          message: 'Vehicle document photo should look like a document scan, not a regular photo.'
+        };
+      }
 
-    if (edgeDensity < 0.04) {
-      return {
-        valid: false,
-        message: 'This image appears too smooth for a document upload. Please upload a clear photo of the actual document.'
-      };
-    }
-
-    if (edgeDensity > 0.45) {
-      return {
-        valid: false,
-        message: 'This image is too complex and looks like a normal photo. Please upload a clean card-style document image.'
-      };
+      if (edgeDensity < 0.04) {
+        return {
+          valid: false,
+          message: 'This image does not have enough document-like detail. Please upload a clear vehicle registration document.'
+        };
+      }
     }
 
     return { valid: true };
