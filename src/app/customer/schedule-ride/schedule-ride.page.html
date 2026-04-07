@@ -1,44 +1,63 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="form-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
     </ion-buttons>
-    <ion-title>Schedule Ride</ion-title>
+    <ion-title class="form-title">Schedule Ride</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="request-card" *ngIf="!submitted">
-    <ion-item>
-      <ion-label position="stacked">Required Date(s)</ion-label>
-      <ion-input [(ngModel)]="requiredDates" placeholder="Enter date(s) or range"></ion-input>
-    </ion-item>
+<ion-content class="form-content">
+  <div class="form-wrapper">
+    <div class="request-card" *ngIf="!submitted">
+      <div class="form-header">
+        <h2>Plan Your Ride</h2>
+        <p>Enter your ride details below</p>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Pickup Location</ion-label>
-      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Required Date(s)</ion-label>
+          <ion-input [(ngModel)]="requiredDates" placeholder="Enter date(s) or range" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Drop Location</ion-label>
-      <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Pickup Location</ion-label>
+          <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Rating</ion-label>
-      <ion-select [(ngModel)]="rating">
-        <ion-select-option value="Standard">Standard</ion-select-option>
-        <ion-select-option value="Premium">Premium</ion-select-option>
-      </ion-select>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Drop Location</ion-label>
+          <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <div class="actions">
-      <ion-button expand="block" (click)="requestDriver()">Request Driver</ion-button>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Preferred Rating</ion-label>
+          <ion-select [(ngModel)]="rating" class="form-input">
+            <ion-select-option value="Standard">Standard</ion-select-option>
+            <ion-select-option value="Premium">Premium</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div class="actions">
+        <ion-button expand="block" class="submit-btn" (click)="requestDriver()">Request Driver</ion-button>
+      </div>
     </div>
-  </div>
 
-  <div class="status-card" *ngIf="submitted">
-    <h2>Admin Matching</h2>
-    <p>Driver Assigned</p>
+    <div class="status-card" *ngIf="submitted">
+      <div class="status-icon">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </div>
+      <h2>Request Submitted</h2>
+      <p class="status-message">Admin matching in progress</p>
+      <p class="status-subtext">A driver will be assigned shortly</p>
+    </div>
   </div>
 </ion-content>

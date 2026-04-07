@@ -1,2 +1,175 @@
-.location-content { padding: 18px; }
-.container { max-width:720px; margin:0 auto; }
+.form-toolbar {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --border-width: 0;
+  height: 100px;
+  padding: 16px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  border-radius: 0 0 24px 24px;
+}
+
+.form-title {
+  --color: white;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.back-btn {
+  --color: white;
+  --icon-font-size: 24px;
+}
+
+.form-content {
+  --background: #f5f6fa;
+  --padding-top: 24px;
+  --padding-bottom: 24px;
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.form-header {
+  margin-bottom: 28px;
+  text-align: center;
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #111;
+  }
+  
+  p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.gps-btn {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --background-activated: #667eea;
+  --border-radius: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+  
+  &:hover:not(:disabled) {
+    --box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);
+    --background: linear-gradient(135deg, #5B6DD7 0%, #6B3F92 100%);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: #999;
+  font-size: 13px;
+  font-weight: 500;
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+  }
+  
+  span {
+    white-space: nowrap;
+  }
+}
+
+.form-item {
+  --background: #f9f9f9;
+  --border-color: #e5e7eb;
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  
+  &:focus-within {
+    --background: white;
+    --border-color: #667eea;
+    border: 2px solid #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  text-transform: none;
+  --color: #333;
+}
+
+.form-input {
+  font-size: 16px;
+  color: #111;
+  
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+}
+
+.submit-btn {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --background-activated: #667eea;
+  --border-radius: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+  
+  &:hover:not(:disabled) {
+    --box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);
+    --background: linear-gradient(135deg, #5B6DD7 0%, #6B3F92 100%);
+  }
+}
+
+/* hide visual scrollbar */
+:host ::ng-deep ion-content,
+:host ::ng-deep .ion-page {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+:host ::ng-deep ion-content::-webkit-scrollbar,
+:host ::ng-deep .ion-page::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}

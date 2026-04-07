@@ -1,61 +1,88 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="form-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
     </ion-buttons>
-    <ion-title>Hire Driver</ion-title>
+    <ion-title class="form-title">Hire Driver</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="request-card" *ngIf="!submitted">
-    <ion-item>
-      <ion-label position="stacked">Customer CNIC *</ion-label>
-      <ion-input [(ngModel)]="cnic" placeholder="12345-1234567-1"></ion-input>
-    </ion-item>
+<ion-content class="form-content">
+  <div class="form-wrapper">
+    <div class="request-card" *ngIf="!submitted">
+      <div class="form-header">
+        <h2>Hire a Professional Driver</h2>
+        <p>Complete the form to request a driver</p>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Hiring Person Name</ion-label>
-      <ion-input [(ngModel)]="hiringPersonName" placeholder="Name"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Customer CNIC *</ion-label>
+          <ion-input [(ngModel)]="cnic" placeholder="12345-1234567-1" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Date & Time</ion-label>
-      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="dateTime"></ion-datetime>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Hiring Person Name</ion-label>
+          <ion-input [(ngModel)]="hiringPersonName" placeholder="Name" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Pickup Location</ion-label>
-      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Date & Time</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="dateTime" class="form-input"></ion-datetime>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Return Time & Place</ion-label>
-      <ion-input [(ngModel)]="returnTimePlace" placeholder="Return time & place"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Pickup Location</ion-label>
+          <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Duration</ion-label>
-      <ion-input [(ngModel)]="duration" placeholder="e.g. 4 hours"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Return Time & Place</ion-label>
+          <ion-input [(ngModel)]="returnTimePlace" placeholder="Return time & place" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Preferred Location</ion-label>
-      <ion-input [(ngModel)]="preferredLocation" placeholder="Preferred location"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Duration</ion-label>
+          <ion-input [(ngModel)]="duration" placeholder="e.g. 4 hours" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Preferred Timing</ion-label>
-      <ion-input [(ngModel)]="preferredTiming" placeholder="Preferred timing"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Preferred Location</ion-label>
+          <ion-input [(ngModel)]="preferredLocation" placeholder="Preferred location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <div class="actions">
-      <ion-button expand="block" (click)="submitHire()">Submit</ion-button>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Preferred Timing</ion-label>
+          <ion-input [(ngModel)]="preferredTiming" placeholder="Preferred timing" class="form-input"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="actions">
+        <ion-button expand="block" class="submit-btn" (click)="submitHire()">Submit Request</ion-button>
+      </div>
     </div>
-  </div>
 
-  <div class="status-card" *ngIf="submitted">
-    <h2>Verification & Admin Approval</h2>
-    <p>Your hire request has been submitted and is under verification.</p>
+    <div class="status-card" *ngIf="submitted">
+      <div class="status-icon">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </div>
+      <h2>Request Submitted</h2>
+      <p class="status-message">Under Verification & Admin Approval</p>
+      <p class="status-subtext">You'll receive updates shortly</p>
+    </div>
   </div>
 </ion-content>

@@ -1,36 +1,53 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="form-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back"></ion-back-button>
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
     </ion-buttons>
-    <ion-title>Monthly Pickup/Drop</ion-title>
+    <ion-title class="form-title">Monthly Pickup/Drop</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="request-card" *ngIf="!submitted">
-    <ion-item>
-      <ion-label position="stacked">Pickup Location</ion-label>
-      <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location"></ion-input>
-    </ion-item>
+<ion-content class="form-content">
+  <div class="form-wrapper">
+    <div class="request-card" *ngIf="!submitted">
+      <div class="form-header">
+        <h2>Monthly Pickup Service</h2>
+        <p>Set up your recurring pickup schedule</p>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Drop Location</ion-label>
-      <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Pickup Location</ion-label>
+          <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <ion-item>
-      <ion-label position="stacked">Monthly Schedule</ion-label>
-      <ion-input [(ngModel)]="monthlySchedule" placeholder="e.g. 1st of every month, or specific days"></ion-input>
-    </ion-item>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Drop Location</ion-label>
+          <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location" class="form-input"></ion-input>
+        </ion-item>
+      </div>
 
-    <div class="actions">
-      <ion-button expand="block" (click)="submitRequest()">Submit Request</ion-button>
+      <div class="form-group">
+        <ion-item class="form-item">
+          <ion-label position="stacked" class="form-label">Monthly Schedule</ion-label>
+          <ion-input [(ngModel)]="monthlySchedule" placeholder="e.g. 1st of every month, or specific days" class="form-input"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="actions">
+        <ion-button expand="block" class="submit-btn" (click)="submitRequest()">Submit Request</ion-button>
+      </div>
     </div>
-  </div>
 
-  <div class="status-card" *ngIf="submitted">
-    <h2>Request Submitted</h2>
-    <p>Waiting for Admin</p>
+    <div class="status-card" *ngIf="submitted">
+      <div class="status-icon">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </div>
+      <h2>Request Submitted</h2>
+      <p class="status-message">Waiting for Admin Approval</p>
+      <p class="status-subtext">You'll receive confirmation soon</p>
+    </div>
   </div>
 </ion-content>

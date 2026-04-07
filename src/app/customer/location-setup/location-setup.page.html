@@ -1,32 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Location Setup</ion-title>
+  <ion-toolbar class="form-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="form-title">Location Setup</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="location-content">
-  <div class="container">
-    <h2>Set Your Preferred Location & Timing</h2>
+<ion-content class="form-content">
+  <div class="form-wrapper">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Set Your Location Preferences</h2>
+        <p>Help us serve you better by setting your preferences</p>
+      </div>
 
-    <ion-button expand="block" (click)="enableGPS()">Enable GPS</ion-button>
+      <div class="form-group">
+        <ion-button expand="block" class="gps-btn" (click)="enableGPS()">
+          <ion-icon name="location-outline" slot="start"></ion-icon>
+          Enable GPS Location
+        </ion-button>
+      </div>
 
-    <form [formGroup]="locationForm">
-      <ion-item>
-        <ion-label position="stacked">Preferred Route</ion-label>
-        <ion-input formControlName="preferredRoute" placeholder="e.g., Main Road to City Center"></ion-input>
-      </ion-item>
+      <div class="divider">
+        <span>or enter manually</span>
+      </div>
 
-      <ion-item>
-        <ion-label position="stacked">Preferred Timing</ion-label>
-        <ion-input formControlName="preferredTiming" placeholder="e.g., Morning 9-11am"></ion-input>
-      </ion-item>
+      <form [formGroup]="locationForm">
+        <div class="form-group">
+          <ion-item class="form-item">
+            <ion-label position="stacked" class="form-label">Preferred Route</ion-label>
+            <ion-input formControlName="preferredRoute" placeholder="e.g., Main Road to City Center" class="form-input"></ion-input>
+          </ion-item>
+        </div>
 
-      <ion-item>
-        <ion-label position="stacked">Manual Address (optional)</ion-label>
-        <ion-input formControlName="manualAddress" placeholder="Enter address"></ion-input>
-      </ion-item>
+        <div class="form-group">
+          <ion-item class="form-item">
+            <ion-label position="stacked" class="form-label">Preferred Timing</ion-label>
+            <ion-input formControlName="preferredTiming" placeholder="e.g., Morning 9-11am" class="form-input"></ion-input>
+          </ion-item>
+        </div>
 
-      <ion-button expand="block" (click)="saveLocation()">Save & Continue</ion-button>
-    </form>
+        <div class="form-group">
+          <ion-item class="form-item">
+            <ion-label position="stacked" class="form-label">Manual Address (optional)</ion-label>
+            <ion-input formControlName="manualAddress" placeholder="Enter address" class="form-input"></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="actions">
+          <ion-button expand="block" class="submit-btn" (click)="saveLocation()">
+            <ion-icon name="checkmark" slot="start"></ion-icon>
+            Save & Continue
+          </ion-button>
+        </div>
+      </form>
+    </div>
   </div>
 </ion-content>
