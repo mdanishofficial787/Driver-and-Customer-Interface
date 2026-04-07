@@ -80,26 +80,13 @@ export class VerificationPendingPage implements OnInit {
       return;
     }
 
-    // File size validation: Max 5MB
-    const maxSize = 5 * 1024 * 1024; // 5MB
-    if (file.size > maxSize) {
-      const alert = await this.alertController.create({
-        header: 'File Too Large',
-        message: 'File size must be less than 5MB',
-        buttons: ['OK']
-      });
-      await alert.present();
-      input.value = '';
-      return;
-    }
-
-    // Image validation: Check if file is actually a valid image and meets document requirements
+    // Image validation: Check if file is actually a valid image and meets document type requirements
     if (file.type.startsWith('image/')) {
       const imageValidation = await this.validateImageFile(file, field);
       if (!imageValidation.valid) {
         const alert = await this.alertController.create({
           header: 'Invalid Image',
-          message: imageValidation.message ?? 'File appears to be corrupted or not a valid image. Please upload a clear photo.',
+          message: imageValidation.message ?? 'File appears to be corrupted or not a valid image. Please upload a clear photo of the correct document or vehicle photo.',
           buttons: ['OK']
         });
         await alert.present();
@@ -151,24 +138,6 @@ export class VerificationPendingPage implements OnInit {
           }
 
           if (this.isStrictDocumentField(field)) {
-            const ratio = width / height;
-            const minSide = Math.min(width, height);
-            const maxSide = Math.max(width, height);
-
-            if (minSide < 800 || maxSide < 1200) {
-              return resolve({
-                valid: false,
-                message: 'Document image is too small. Please upload a clear, high-resolution scan or photo of the actual document.'
-              });
-            }
-
-            if (ratio < 1.2 || ratio > 2.4) {
-              return resolve({
-                valid: false,
-                message: 'Please upload a card-style document image (e.g. CNIC, license, smart card) in landscape orientation.'
-              });
-            }
-
             const analysis = this.analyzeDocumentImage(img);
             if (!analysis.valid) {
               return resolve({ valid: false, message: analysis.message });
@@ -199,37 +168,45 @@ export class VerificationPendingPage implements OnInit {
 
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const { uniqueColors, edgeDensity } = this.computeImageMetrics(imageData);
+    const { uniqueColors, edgeDensity, avgSaturation } = this.computeImageMetrics(imageData);
 
-    if (uniqueColors > 180) {
+    if (uniqueColors > 120) {
       return {
         valid: false,
-        message: 'This image looks more like a photo than a scanned identity document. Please upload a clear picture of your CNIC, license, or smart card only.'
+        message: 'This image looks more like a photo than a document scan. Please upload a clear photo of the correct identity document.'
       };
     }
 
-    if (edgeDensity < 0.03) {
+    if (avgSaturation > 0.38) {
       return {
         valid: false,
-        message: 'This image appears too smooth and may not be a document scan. Please upload a clear photo of the actual document.'
+        message: 'This image is too colorful for a document photo. Please upload a clear photo of the actual document only.'
       };
     }
 
-    if (edgeDensity > 0.40) {
+    if (edgeDensity < 0.04) {
       return {
         valid: false,
-        message: 'This image is too complex for a document photo. Please upload a clean, card-style image of the actual document.'
+        message: 'This image appears too smooth for a document upload. Please upload a clear photo of the actual document.'
+      };
+    }
+
+    if (edgeDensity > 0.45) {
+      return {
+        valid: false,
+        message: 'This image is too complex and looks like a normal photo. Please upload a clean card-style document image.'
       };
     }
 
     return { valid: true };
   }
 
-  private computeImageMetrics(imageData: ImageData): { uniqueColors: number; edgeDensity: number } {
+  private computeImageMetrics(imageData: ImageData): { uniqueColors: number; edgeDensity: number; avgSaturation: number } {
     const { data, width, height } = imageData;
     const colors = new Set<number>();
     let edgeCount = 0;
     let sampleCount = 0;
+    let saturationSum = 0;
 
     for (let y = 0; y < height - 1; y += 2) {
       for (let x = 0; x < width - 1; x += 2) {
@@ -239,6 +216,17 @@ export class VerificationPendingPage implements OnInit {
         const b = data[idx + 2];
         const key = ((r >> 4) << 8) | ((g >> 4) << 4) | (b >> 4);
         colors.add(key);
+
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const lightness = (max + min) / 2;
+        let saturation = 0;
+        if (max !== min) {
+          saturation = lightness <= 127
+            ? (max - min) / (max + min)
+            : (max - min) / (510 - max - min);
+        }
+        saturationSum += saturation;
 
         const rightIdx = idx + 4;
         const downIdx = idx + width * 4;
@@ -251,7 +239,7 @@ export class VerificationPendingPage implements OnInit {
         const horiz = Math.sqrt(dr * dr + dg * dg + db * db);
         const vert = Math.sqrt(downDr * downDr + downDg * downDg + downDb * downDb);
 
-        if (horiz > 30 || vert > 30) {
+        if (horiz > 28 || vert > 28) {
           edgeCount++;
         }
         sampleCount++;
@@ -260,7 +248,8 @@ export class VerificationPendingPage implements OnInit {
 
     return {
       uniqueColors: colors.size,
-      edgeDensity: sampleCount ? edgeCount / sampleCount : 0
+      edgeDensity: sampleCount ? edgeCount / sampleCount : 0,
+      avgSaturation: sampleCount ? saturationSum / sampleCount : 0
     };
   }
 
