@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class CustomerHomePage implements OnInit {
   customerName = 'Customer';
   customerEmail = '';
+  customerPhone = '';
   assignedBookings: any[] = [];
+  isMenuOpen = false;
 
   stats = { totalRides: 0, todayRides: 0, spending: 0, rating: 0 };
 
@@ -27,6 +29,7 @@ export class CustomerHomePage implements OnInit {
         const c = JSON.parse(step1);
         this.customerName = c.fullName || 'Customer';
         this.customerEmail = c.email || '';
+        this.customerPhone = c.phoneNumber || '';
       }
       const step2 = localStorage.getItem('customerStep2');
       if (step2) {
@@ -38,8 +41,57 @@ export class CustomerHomePage implements OnInit {
     }
   }
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+
+  async logout() {
+    const alert = await this.alertController.create({
+      header: 'Logout',
+      message: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.closeMenu();
+          }
+        },
+        {
+          text: 'Logout',
+          role: 'destructive',
+          handler: () => {
+            localStorage.removeItem('customerStep1');
+            localStorage.removeItem('customerStep2');
+            this.router.navigate(['/select-user-type']);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   async contactSupport() {
-    const alert = await this.alertController.create({ message: 'Support will contact you soon.', buttons: ['OK'] });
+    this.closeMenu();
+    const alert = await this.alertController.create({
+      header: 'Contact Support',
+      message: 'Our support team will contact you shortly. Email: support@ridenserve.com',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async needHelp() {
+    this.closeMenu();
+    const alert = await this.alertController.create({
+      header: 'Need Help?',
+      message: 'Visit our FAQ section or contact support at support@ridenserve.com. Phone: +92-300-1234567',
+      buttons: ['OK']
+    });
     await alert.present();
   }
 

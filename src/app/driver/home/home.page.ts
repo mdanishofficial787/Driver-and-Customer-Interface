@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-driver-home',
@@ -8,6 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class DriverHomePage implements OnInit {
   isAvailable = false;
+  isMenuOpen = false;
   driverName = 'Driver';
   driverEmail = '';
   driverVehicle = '';
@@ -44,7 +46,7 @@ export class DriverHomePage implements OnInit {
     rating: 4.8
   };
 
-  constructor(private alertController: AlertController, private changeDetector: ChangeDetectorRef) { }
+  constructor(private alertController: AlertController, private changeDetector: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit() {
     this.loadDriverData();
@@ -149,6 +151,60 @@ export class DriverHomePage implements OnInit {
     setTimeout(() => {
       alert.dismiss();
     }, 2000);
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+
+  async logout() {
+    const alert = await this.alertController.create({
+      header: 'Logout',
+      message: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.closeMenu();
+          }
+        },
+        {
+          text: 'Logout',
+          role: 'destructive',
+          handler: () => {
+            localStorage.removeItem('driverStep1');
+            localStorage.removeItem('driverStep2');
+            this.router.navigate(['/select-user-type']);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async contactSupport() {
+    this.closeMenu();
+    const alert = await this.alertController.create({
+      header: 'Contact Support',
+      message: 'Our support team will contact you shortly. Email: support@ridenserve.com',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async needHelp() {
+    this.closeMenu();
+    const alert = await this.alertController.create({
+      header: 'Need Help?',
+      message: 'Visit our FAQ section or contact support at support@ridenserve.com. Phone: +92-300-1234567',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   getRideTypeColor(type: string): string {

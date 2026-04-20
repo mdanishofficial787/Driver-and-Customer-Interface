@@ -11,9 +11,15 @@ export class ScheduleRidePage {
   pickupLocation = '';
   dropLocation = '';
   rating = 'Standard';
+  selectedVehicle = 'sedan';
+  customerName = localStorage.getItem('customerName') || 'Guest';
   submitted = false;
 
   constructor(private alertController: AlertController) {}
+
+  selectVehicle(vehicle: string) {
+    this.selectedVehicle = vehicle;
+  }
 
   async requestDriver() {
     if (!this.requiredDates || !this.pickupLocation || !this.dropLocation) {
@@ -27,6 +33,7 @@ export class ScheduleRidePage {
       pickupLocation: this.pickupLocation,
       dropLocation: this.dropLocation,
       rating: this.rating,
+      vehicleType: this.selectedVehicle,
       status: 'submitted',
       createdAt: new Date().toISOString()
     };

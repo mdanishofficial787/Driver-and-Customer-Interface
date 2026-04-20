@@ -5,13 +5,14 @@
 
 .splash-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
   min-height: 100%;
   position: relative;
-  padding: 60px 20px;
+  padding: 60px 20px 60px 50px;
+  gap: 60px;
 }
 
 /* Animated Background */
@@ -72,11 +73,13 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  width: 32%;
+  min-width: 240px;
 }
 
 .logo-wrapper {
@@ -88,6 +91,13 @@
 .app-logo {
   font-size: 140px;
   color: white;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  animation: pulse-logo 2s ease-in-out infinite;
+}
+
+.splash-logo-img {
+  width: 240px;
+  height: 240px;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
   animation: pulse-logo 2s ease-in-out infinite;
 }
@@ -132,6 +142,7 @@
   letter-spacing: -1px;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   animation: slide-in-down 0.8s ease-out;
+  display: none;
 }
 
 @keyframes slide-in-down {
@@ -148,6 +159,7 @@
 .app-tagline {
   color: rgba(255, 255, 255, 0.9);
   font-size: 18px;
+  display: none;
   font-weight: 400;
   margin: 0;
   letter-spacing: 1px;
@@ -172,6 +184,11 @@
   width: 100%;
   max-width: 300px;
   animation: fade-in-up 1s ease-out 0.5s both;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-bar {
@@ -232,5 +249,56 @@
     font-size: 12px;
     margin: 0;
     letter-spacing: 0.5px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .splash-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .logo-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .splash-logo-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .loading-section {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .splash-container {
+    padding: 30px 16px;
+    gap: 30px;
+  }
+
+  .splash-logo-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .loading-section {
+    max-width: 280px;
+    margin-bottom: 60px;
+  }
+
+  .loading-bar {
+    height: 3px;
+  }
+
+  .loading-text {
+    font-size: 12px;
+    margin-top: 12px;
   }
 }

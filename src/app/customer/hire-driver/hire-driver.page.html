@@ -1,13 +1,14 @@
-<ion-header>
-  <ion-toolbar class="form-toolbar">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="form-title">Hire Driver</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="form-content">
+  <div class="hero-section">
+    <div class="hero-toolbar">
+      <ion-button fill="clear" class="hero-back-btn" routerLink="/customer/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <div class="hero-page-title">Hire Driver</div>
+    </div>
+    <div class="hero-copy">
+    </div>
+  </div>
   <div class="form-wrapper">
     <div class="request-card" *ngIf="!submitted">
       <div class="form-header">
@@ -31,6 +32,7 @@
 
       <div class="form-group">
         <ion-item class="form-item">
+          <ion-icon slot="start" name="calendar" class="form-icon white-icon"></ion-icon>
           <ion-label position="stacked" class="form-label">Date & Time</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="dateTime" class="form-input"></ion-datetime>
         </ion-item>

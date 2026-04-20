@@ -9,12 +9,13 @@ import { AlertController } from '@ionic/angular';
 export class HireDriverPage {
   cnic = '';
   hiringPersonName = '';
-  dateTime = '';
+  dateTime: string | null = null;
   pickupLocation = '';
   returnTimePlace = '';
   duration = '';
   preferredLocation = '';
   preferredTiming = '';
+  customerName = localStorage.getItem('customerName') || 'Guest';
   submitted = false;
 
   constructor(private alertController: AlertController) {}

@@ -69,6 +69,43 @@
   --ion-color-light-tint: #f4f5f7;
 }
 
+ion-select {
+  --background: #ffffff;
+  --color: #2D2D4E;
+  --placeholder-color: #8A8A9F;
+  --icon-color: #667EEA;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  text-align: right;
+}
+
+ion-select::part(text),
+ion-select::part(icon) {
+  text-align: right;
+}
+
+ion-select::part(icon) {
+  right: 16px;
+}
+
+ion-popover,
+ion-select-popover {
+  --background: #ffffff;
+  --color: #2D2D4E;
+  --border-color: #E8E8F0;
+}
+
+ion-popover .popover-content,
+ion-select-popover .popover-content {
+  background: #ffffff;
+  color: #2D2D4E;
+}
+
+ion-popover .popover-wrapper,
+ion-select-popover .popover-wrapper {
+  background: #ffffff;
+}
+
 /** Gradient Colors **/
 .ion-color-gradient-primary {
   --ion-color-base: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

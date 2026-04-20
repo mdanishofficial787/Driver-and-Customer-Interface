@@ -1,0 +1,38 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="faviconShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#faviconGradient)" rx="50"/>
+
+  <!-- Car illustration - simplified for favicon -->
+  <g transform="translate(100, 70)" filter="url(#faviconShadow)">
+    <!-- Car body -->
+    <ellipse cx="0" cy="30" rx="60" ry="32" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1.5"/>
+    
+    <!-- Car roof -->
+    <path d="M -32 30 Q -38 8 0 -2 Q 38 8 32 30 Z" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1.5"/>
+    
+    <!-- Windshield -->
+    <path d="M -25 15 Q -32 3 0 -5 Q 32 3 25 15 Z" fill="#e0f2fe" opacity="0.5"/>
+    
+    <!-- Left wheel -->
+    <circle cx="-35" cy="55" r="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="-35" cy="55" r="4" fill="#818cf8"/>
+    
+    <!-- Right wheel -->
+    <circle cx="35" cy="55" r="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="35" cy="55" r="4" fill="#818cf8"/>
+    
+    <!-- Headlights -->
+    <circle cx="-25" cy="8" r="3" fill="#fbbf24" opacity="0.7"/>
+    <circle cx="25" cy="8" r="3" fill="#fbbf24" opacity="0.7"/>
+  </g>
+</svg>

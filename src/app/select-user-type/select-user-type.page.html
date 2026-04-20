@@ -9,7 +9,7 @@
       </div>
       
       <div class="header-content">
-        <ion-icon name="car-sport-outline" class="main-icon rs-float"></ion-icon>
+        <img src="assets/logo/splash-logo.svg" alt="RideServe" class="splash-logo rs-float">
         <h1 style="color: white;">Welcome</h1>
         <p class="subtitle">Choose your account type to continue</p>
       </div>
@@ -18,42 +18,6 @@
     <!-- Selection Cards -->
     <div class="cards-container">
       
-      <!-- Driver Card -->
-      <div class="selection-card driver-card" (click)="selectDriver()">
-        <div class="card-content">
-          <div class="card-icon-wrapper">
-            <ion-icon name="person-outline" class="card-icon"></ion-icon>
-            <div class="icon-glow driver-glow"></div>
-          </div>
-          
-          <div class="card-info">
-            <h2>Driver</h2>
-            <p>Join as a driver and start earning today</p>
-            
-            <div class="features-list">
-              <div class="feature">
-                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
-                <span>Flexible Schedule</span>
-              </div>
-              <div class="feature">
-                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
-                <span>High Earnings</span>
-              </div>
-              <div class="feature">
-                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
-                <span>Instant Payments</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="card-arrow">
-            <ion-icon name="arrow-forward-circle"></ion-icon>
-          </div>
-        </div>
-        
-        <div class="card-gradient driver-gradient"></div>
-      </div>
-
       <!-- Customer Card -->
       <div class="selection-card customer-card" (click)="selectCustomer()">
         <div class="card-content">
@@ -88,6 +52,42 @@
         </div>
         
         <div class="card-gradient customer-gradient"></div>
+      </div>
+
+      <!-- Driver Card -->
+      <div class="selection-card driver-card" (click)="selectDriver()">
+        <div class="card-content">
+          <div class="card-icon-wrapper">
+            <ion-icon name="person-outline" class="card-icon"></ion-icon>
+            <div class="icon-glow driver-glow"></div>
+          </div>
+          
+          <div class="card-info">
+            <h2>Driver</h2>
+            <p>Join as a driver and start earning today</p>
+            
+            <div class="features-list">
+              <div class="feature">
+                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
+                <span>Flexible Schedule</span>
+              </div>
+              <div class="feature">
+                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
+                <span>High Earnings</span>
+              </div>
+              <div class="feature">
+                <ion-icon name="checkmark-circle" class="feature-icon"></ion-icon>
+                <span>Instant Payments</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-arrow">
+            <ion-icon name="arrow-forward-circle"></ion-icon>
+          </div>
+        </div>
+        
+        <div class="card-gradient driver-gradient"></div>
       </div>
     </div>
 

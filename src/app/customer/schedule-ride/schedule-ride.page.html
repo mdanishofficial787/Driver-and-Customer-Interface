@@ -1,49 +1,59 @@
-<ion-header>
-  <ion-toolbar class="form-toolbar">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/customer/home" text="" icon="arrow-back" class="back-btn"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="form-title">Schedule Ride</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="form-content">
+  <div class="hero-section">
+    <div class="hero-toolbar">
+      <ion-button fill="clear" class="hero-back-btn" routerLink="/customer/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <div class="hero-page-title">Schedule Ride</div>
+    </div>
+  </div>
   <div class="form-wrapper">
     <div class="request-card" *ngIf="!submitted">
       <div class="form-header">
-        <h2>Plan Your Ride</h2>
-        <p>Enter your ride details below</p>
+        <h2>Plan Your Ride Details</h2>
+        <p>Review and complete the booking information below</p>
       </div>
 
       <div class="form-group">
         <ion-item class="form-item">
-          <ion-label position="stacked" class="form-label">Required Date(s)</ion-label>
-          <ion-input [(ngModel)]="requiredDates" placeholder="Enter date(s) or range" class="form-input"></ion-input>
+          <ion-icon slot="start" name="calendar" class="form-icon white-icon"></ion-icon>
+          <ion-label position="stacked" class="form-label">Select Date(s) & Time</ion-label>
+          <ion-input [(ngModel)]="requiredDates" placeholder="May 20, 10:30 AM" class="form-input"></ion-input>
         </ion-item>
       </div>
 
       <div class="form-group">
         <ion-item class="form-item">
+          <ion-icon slot="start" name="location" class="form-icon"></ion-icon>
           <ion-label position="stacked" class="form-label">Pickup Location</ion-label>
-          <ion-input [(ngModel)]="pickupLocation" placeholder="Pickup Location" class="form-input"></ion-input>
+          <ion-input [(ngModel)]="pickupLocation" placeholder="Enter Pickup Location" class="form-input"></ion-input>
         </ion-item>
       </div>
 
       <div class="form-group">
         <ion-item class="form-item">
+          <ion-icon slot="start" name="location" class="form-icon"></ion-icon>
           <ion-label position="stacked" class="form-label">Drop Location</ion-label>
-          <ion-input [(ngModel)]="dropLocation" placeholder="Drop Location" class="form-input"></ion-input>
+          <ion-input [(ngModel)]="dropLocation" placeholder="Enter Drop Location" class="form-input"></ion-input>
         </ion-item>
       </div>
 
-      <div class="form-group">
-        <ion-item class="form-item">
-          <ion-label position="stacked" class="form-label">Preferred Rating</ion-label>
-          <ion-select [(ngModel)]="rating" class="form-input">
-            <ion-select-option value="Standard">Standard</ion-select-option>
-            <ion-select-option value="Premium">Premium</ion-select-option>
-          </ion-select>
-        </ion-item>
+      <div class="vehicle-selection">
+        <h3>Select Vehicle Type</h3>
+        <div class="vehicle-options">
+          <button class="vehicle-btn hatchback" [class.active]="selectedVehicle === 'hatchback'" (click)="selectVehicle('hatchback')">
+            <ion-icon name="car"></ion-icon>
+            <span>Hatchback</span>
+          </button>
+          <button class="vehicle-btn sedan" [class.active]="selectedVehicle === 'sedan'" (click)="selectVehicle('sedan')">
+            <ion-icon name="car"></ion-icon>
+            <span>Sedan</span>
+          </button>
+          <button class="vehicle-btn suv" [class.active]="selectedVehicle === 'suv'" (click)="selectVehicle('suv')">
+            <ion-icon name="car"></ion-icon>
+            <span>SUV</span>
+          </button>
+        </div>
       </div>
 
       <div class="actions">

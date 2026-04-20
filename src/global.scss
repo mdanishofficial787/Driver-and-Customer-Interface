@@ -415,8 +415,77 @@ h3 { font-size: clamp(20px, 3vw, 24px); }
 h4 { font-size: clamp(18px, 2.5vw, 20px); }
 p { font-size: clamp(14px, 2vw, 16px); }
 
+/* Global right-align for all dropdowns */
+ion-select,
+.select-wrapper ion-select,
+ion-item ion-select,
+ion-select::part(text),
+ion-select::part(value),
+ion-select::part(icon),
+ion-select .select-text,
+ion-select .select-value {
+  --padding-start: 16px;
+  --padding-end: 40px;
+  text-align: right !important;
+}
+
+ion-select,
+.select-wrapper ion-select,
+ion-item ion-select {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+ion-select::part(icon) {
+  position: absolute !important;
+  top: 50% !important;
+  right: 16px !important;
+  transform: translateY(-50%) !important;
+}
+
+ion-select::part(text),
+ion-select::part(value),
+ion-select .select-text,
+ion-select .select-value {
+  padding-right: 40px !important;
+}
+
 /* Loading Spinner Custom */
 .rs-spinner {
   --color: var(--rs-primary);
   transform: scale(1.5);
+}
+
+/* Ionic overlay dropdown / select alert styling */
+ion-alert,
+ion-action-sheet,
+ion-popover,
+ion-select-popover {
+  --background: #ffffff;
+  --color: #2D2D4E;
+  --border-color: #E8E8F0;
+}
+
+ion-alert .alert-wrapper,
+ion-alert .alert-radio-group,
+ion-alert .alert-checkbox-group,
+ion-action-sheet .action-sheet-group,
+ion-popover .popover-wrapper {
+  background: #ffffff !important;
+  color: #2D2D4E !important;
+}
+
+ion-alert .alert-title,
+ion-alert .alert-sub-title,
+ion-alert .alert-radio-label,
+ion-alert .alert-checkbox-label,
+ion-action-sheet .action-sheet-button,
+ion-select-popover .popover-content {
+  color: #2D2D4E !important;
+}
+
+ion-alert .alert-button,
+ion-action-sheet .action-sheet-button {
+  color: #2D2D4E !important;
 }

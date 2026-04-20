@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-customer-signup-step2',
@@ -10,14 +10,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class CustomerSignupStep2Page implements OnInit {
   signupForm: FormGroup;
+  showPassword = false;
+  showConfirmPassword = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private alertController: AlertController
-  ) { 
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {
     this.signupForm = this.formBuilder.group({
-      accountType: ['', Validators.required],
+      accountType: ['personal', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
@@ -29,22 +32,29 @@ export class CustomerSignupStep2Page implements OnInit {
   async submitRegistration() {
     if (this.signupForm.valid && this.signupForm.value.password === this.signupForm.value.confirmPassword) {
       localStorage.setItem('customerStep2', JSON.stringify(this.signupForm.value));
-      const alert = await this.alertController.create({
-        header: 'Success!',
+      const toast = await this.toastController.create({
         message: 'Registration complete. Welcome!',
-        buttons: [{
-          text: 'OK',
-          handler: () => {
-            this.router.navigate(['/customer/home']);
-          }
-        }]
+        duration: 5000,
+        position: 'top',
+        color: 'success',
+        icon: 'checkmark-circle-outline'
       });
-      await alert.present();
+      await toast.present();
+      await toast.onDidDismiss();
+      this.router.navigate(['/customer/home']);
     } else {
       if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
         const a = await this.alertController.create({ header: 'Error', message: 'Passwords do not match', buttons: ['OK'] });
         await a.present();
       }
+    }
+  }
+
+  togglePassword(field: 'password' | 'confirmPassword') {
+    if (field === 'password') {
+      this.showPassword = !this.showPassword;
+    } else {
+      this.showConfirmPassword = !this.showConfirmPassword;
     }
   }
 }

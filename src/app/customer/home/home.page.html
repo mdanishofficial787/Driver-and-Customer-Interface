@@ -1,4 +1,4 @@
-<ion-header>
+﻿<ion-header>
   <ion-toolbar class="custom-toolbar">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
@@ -6,47 +6,136 @@
   </ion-toolbar>
 </ion-header>
 
+<div class="menu-overlay" *ngIf="isMenuOpen" (click)="closeMenu()"></div>
+<div class="side-drawer" [class.open]="isMenuOpen">
+  <div class="profile-section">
+    <div class="profile-avatar">
+      <ion-icon name="person-circle"></ion-icon>
+    </div>
+    <div class="profile-info">
+      <h2>{{ customerName }}</h2>
+      <p class="email">{{ customerEmail }}</p>
+      <p class="phone" *ngIf="customerPhone">{{ customerPhone }}</p>
+    </div>
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <div class="menu-options">
+    <button class="menu-item" (click)="contactSupport()">
+      <ion-icon name="call"></ion-icon>
+      <span>Contact Us</span>
+    </button>
+    <button class="menu-item" (click)="needHelp()">
+      <ion-icon name="help-circle"></ion-icon>
+      <span>Need Help</span>
+    </button>
+    <button class="menu-item logout" (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</div>
+
 <ion-content class="customer-content">
+  <div class="hero-section">
+    <div class="hero-copy">
+      <h1>Welcome, {{ customerName }}!</h1>
+      <p>Manage your rides & bookings</p>
+    </div>
+    <div class="hero-menu">
+      <ion-button fill="clear" (click)="toggleMenu()" class="menu-btn">
+        <ion-icon name="menu" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 
-  <div class="dashboard-header">
-    <div class="header-top">
-      <div>
-        <h1>Welcome, {{ customerName }}!</h1>
-        <p class="subtitle">Manage your rides & bookings</p>
+  <div class="service-section">
+    <ion-card button class="service-card" (click)="goMonthlyPickup()">
+      <div class="service-left">
+        <div class="service-icon calendar">
+          <ion-icon name="calendar"></ion-icon>
+        </div>
+        <div>
+          <h3>Monthly Pickup</h3>
+          <p>Regular planned pickups for a month.</p>
+        </div>
       </div>
-    </div>
+      <ion-icon class="card-arrow" name="chevron-forward"></ion-icon>
+    </ion-card>
+
+    <ion-card button class="service-card" (click)="goScheduleRide()">
+      <div class="service-left">
+        <div class="service-icon time">
+          <ion-icon name="time"></ion-icon>
+        </div>
+        <div>
+          <h3>Schedule Ride</h3>
+          <p>Book a ride in advance for any time.</p>
+        </div>
+      </div>
+      <ion-icon class="card-arrow" name="chevron-forward"></ion-icon>
+    </ion-card>
+
+    <ion-card button class="service-card" (click)="goHireDriver()">
+      <div class="service-left">
+        <div class="service-icon driver">
+          <ion-icon name="person"></ion-icon>
+        </div>
+        <div>
+          <h3>Hire Driver</h3>
+          <p>Get a professional personal driver.</p>
+        </div>
+      </div>
+      <ion-icon class="card-arrow" name="chevron-forward"></ion-icon>
+    </ion-card>
+
+    <ion-card button class="service-card" (click)="goTravel()">
+      <div class="service-left">
+        <div class="service-icon travel">
+          <ion-icon name="airplane"></ion-icon>
+        </div>
+        <div>
+          <h3>Travel & Tourism</h3>
+          <p>Explore and plan your leisure travel.</p>
+        </div>
+      </div>
+      <ion-icon class="card-arrow" name="chevron-forward"></ion-icon>
+    </ion-card>
   </div>
 
-  <div class="stats-container">
-    <div class="customer-options-grid">
-      <ion-card button (click)="goMonthlyPickup()" class="option-card">
-        <ion-card-content>
-          <div class="option-left"><div class="option-num">1</div></div>
-          <div class="option-right"><h3>Monthly Pickup</h3></div>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card button (click)="goScheduleRide()" class="option-card">
-        <ion-card-content>
-          <div class="option-left"><div class="option-num">2</div></div>
-          <div class="option-right"><h3>Schedule Ride</h3></div>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card button (click)="goHireDriver()" class="option-card">
-        <ion-card-content>
-          <div class="option-left"><div class="option-num">3</div></div>
-          <div class="option-right"><h3>Hire Driver</h3></div>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card button (click)="goTravel()" class="option-card">
-        <ion-card-content>
-          <div class="option-left"><div class="option-num">4</div></div>
-          <div class="option-right"><h3>Travel & Tourism</h3></div>
-        </ion-card-content>
-      </ion-card>
-    </div>
+  <div class="assist-title">
+    <h2>Need Assistance?</h2>
   </div>
+  <div class="assist-grid">
+    <ion-card button class="assist-card" (click)="needHelp()">
+      <ion-card-content>
+        <div class="assist-icon bubble">
+          <ion-icon name="help-circle-outline"></ion-icon>
+        </div>
+        <h3>Help Centre / FAQ</h3>
+        <p>Find answers to common questions.</p>
+      </ion-card-content>
+    </ion-card>
 
+    <ion-card button class="assist-card" (click)="contactSupport()">
+      <ion-card-content>
+        <div class="assist-icon headset">
+          <ion-icon name="headset"></ion-icon>
+        </div>
+        <h3>Contact Support</h3>
+        <p>Chat with our support team (Live).</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card button class="assist-card" (click)="contactSupport()">
+      <ion-card-content>
+        <div class="assist-icon phone">
+          <ion-icon name="call"></ion-icon>
+        </div>
+        <h3>Contact Us</h3>
+        <p>Get in touch for other queries.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

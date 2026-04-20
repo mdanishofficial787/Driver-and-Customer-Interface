@@ -42,11 +42,10 @@
           <ion-icon name="person-circle-outline"></ion-icon>
           Account Type *
         </label>
-        <div class="select-wrapper">
-          <ion-select formControlName="accountType" placeholder="Select account type" interface="popover">
-            <ion-select-option value="individual">Individual</ion-select-option>
-            <ion-select-option value="business">Business</ion-select-option>
-          </ion-select>
+        <div class="select-wrapper account-type-display">
+          <ion-icon name="person-outline" class="account-type-icon"></ion-icon>
+          <span class="account-type-text">Personal</span>
+          <input type="hidden" formControlName="accountType" />
         </div>
       </div>
 
@@ -56,7 +55,10 @@
           Password *
         </label>
         <div class="input-wrapper">
-          <ion-input type="password" formControlName="password" placeholder="Choose a password"></ion-input>
+          <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Choose a password"></ion-input>
+          <button type="button" class="password-toggle" (click)="togglePassword('password')" aria-label="Toggle password visibility">
+            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
         </div>
       </div>
 
@@ -66,13 +68,16 @@
           Confirm Password *
         </label>
         <div class="input-wrapper">
-          <ion-input type="password" formControlName="confirmPassword" placeholder="Repeat password"></ion-input>
+          <ion-input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Repeat password"></ion-input>
+          <button type="button" class="password-toggle" (click)="togglePassword('confirmPassword')" aria-label="Toggle confirm password visibility">
+            <ion-icon [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
         </div>
       </div>
 
       <ion-button expand="block" class="submit-button" (click)="submitRegistration()" [disabled]="signupForm.invalid">
         Submit Registration
-        <ion-icon slot="end" name="checkmark-done"></ion-icon>
+        <ion-icon slot="end" name="checkmark"></ion-icon>
       </ion-button>
 
     </form>

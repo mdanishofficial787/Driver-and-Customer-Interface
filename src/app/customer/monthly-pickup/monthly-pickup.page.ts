@@ -7,31 +7,37 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./monthly-pickup.page.scss'],
 })
 export class MonthlyPickupPage {
+  requiredDates = '';
   pickupLocation = '';
   dropLocation = '';
-  monthlySchedule = '';
+  selectedVehicle = 'sedan';
+  customerName = localStorage.getItem('customerName') || 'Guest';
   submitted = false;
 
   constructor(private alertController: AlertController) {}
 
+  selectVehicle(vehicle: string) {
+    this.selectedVehicle = vehicle;
+  }
+
   async submitRequest() {
-    if (!this.pickupLocation || !this.dropLocation) {
-      const a = await this.alertController.create({ header: 'Missing fields', message: 'Please enter pickup and drop locations.', buttons: ['OK'] });
+    if (!this.requiredDates || !this.pickupLocation || !this.dropLocation) {
+      const a = await this.alertController.create({ header: 'Missing fields', message: 'Please enter date/time, pickup location, and drop location.', buttons: ['OK'] });
       await a.present();
       return;
     }
 
     const request = {
+      requiredDates: this.requiredDates,
       pickupLocation: this.pickupLocation,
       dropLocation: this.dropLocation,
-      monthlySchedule: this.monthlySchedule,
+      vehicleType: this.selectedVehicle,
       createdAt: new Date().toISOString(),
       status: 'submitted'
     };
-    // persist locally for now
     localStorage.setItem('monthlyPickupRequest', JSON.stringify(request));
     this.submitted = true;
-    const a = await this.alertController.create({ header: 'Request Submitted', message: 'Your monthly pickup request has been submitted. Waiting for Admin.', buttons: ['OK'] });
+    const a = await this.alertController.create({ header: 'Request Submitted', message: 'Your scheduled pickup request has been submitted. Waiting for Admin.', buttons: ['OK'] });
     await a.present();
   }
 }

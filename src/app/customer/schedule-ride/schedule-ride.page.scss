@@ -1,11 +1,28 @@
 .form-toolbar {
-  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --border-width: 0;
+  --background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  --border-width: 0 !important;
+  --border-bottom: none !important;
+  --box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
   height: 100px;
-  padding: 16px;
+  padding: 16px 4px 16px 16px;
   color: white;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
   border-radius: 0 0 24px 24px;
+}
+
+ion-header,
+ion-toolbar.form-toolbar,
+:host ::ng-deep ion-header,
+:host ::ng-deep ion-toolbar.form-toolbar {
+  --background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  --border-width: 0 !important;
+  --border-bottom: none !important;
+  --box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .form-title {
@@ -20,10 +37,72 @@
   --icon-font-size: 24px;
 }
 
+.hero-section {
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%);
+  padding: 18px 20px 20px 20px;
+  border-radius: 0 0 34px 34px;
+  min-height: 80px;
+  margin-bottom: 14px;
+}
+
+.hero-copy {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-copy h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.hero-copy p {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hero-back-btn {
+  --color: white;
+}
+
+.hero-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-left: -10px;
+}
+
 .form-content {
   --background: #f5f6fa;
-  --padding-top: 24px;
+  --padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  padding-top: 0;
+  margin-top: 0;
+  --offset-top: 0;
   --padding-bottom: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.form-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.form-content {
+  scrollbar-width: none;
 }
 
 .form-wrapper {
@@ -175,11 +254,92 @@
   font-size: 16px;
   letter-spacing: 0.5px;
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+  text-transform: uppercase;
   
   &:hover:not(:disabled) {
     --box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);
     --background: linear-gradient(135deg, #5B6DD7 0%, #6B3F92 100%);
   }
+}
+
+.form-icon {
+  color: #667eea;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.white-icon {
+  color: white;
+}
+
+.vehicle-selection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+  }
+}
+
+.vehicle-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.vehicle-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  ion-icon {
+    font-size: 28px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  
+  span {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  &.active {
+    border-color: #667eea;
+    background: #f0f4ff;
+    
+    ion-icon {
+      color: #667eea;
+    }
+    
+    span {
+      color: #667eea;
+      font-weight: 600;
+    }
+  }
+}
+
+.vehicle-btn.hatchback ion-icon {
+  color: #20c997;
+}
+
+.vehicle-btn.sedan ion-icon {
+  color: #667eea;
+}
+
+.vehicle-btn.suv ion-icon {
+  color: #ff8a65;
 }
 
 .status-card {

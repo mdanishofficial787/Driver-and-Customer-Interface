@@ -1,11 +1,28 @@
 .form-toolbar {
-  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --border-width: 0;
+  --background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  --border-width: 0 !important;
+  --border-bottom: none !important;
+  --box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
   height: 100px;
-  padding: 16px;
+  padding: 16px 4px 16px 16px;
   color: white;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
   border-radius: 0 0 24px 24px;
+}
+
+ion-header,
+ion-toolbar.form-toolbar,
+:host ::ng-deep ion-header,
+:host ::ng-deep ion-toolbar.form-toolbar {
+  --background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%) !important;
+  --border-width: 0 !important;
+  --border-bottom: none !important;
+  --box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .form-title {
@@ -20,10 +37,81 @@
   --icon-font-size: 24px;
 }
 
+.hero-section {
+  background: linear-gradient(135deg, #5b43d6 0%, #8f5ff6 100%);
+  padding: 18px 20px 20px 20px;
+  border-radius: 0 0 34px 34px;
+  min-height: 80px;
+  margin-bottom: 14px;
+}
+
+.hero-copy {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-copy h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.hero-copy p {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.white-icon {
+  color: white;
+}
+
+.hero-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hero-back-btn {
+  --color: white;
+}
+
+.hero-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-left: -10px;
+}
+
 .form-content {
   --background: #f5f6fa;
-  --padding-top: 24px;
+  --padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  padding-top: 0;
+  margin-top: 0;
+  --offset-top: 0;
   --padding-bottom: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.form-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.form-content {
+  scrollbar-width: none;
 }
 
 .form-wrapper {
@@ -218,6 +306,57 @@
   font-size: 13px;
   color: #999;
   margin: 0;
+}
+
+/* Calendar styling - Pure White */
+:host ::ng-deep .datetime-container,
+:host ::ng-deep ion-datetime {
+  --background: #ffffff;
+  --color: #111;
+}
+
+:host ::ng-deep .day-selector,
+:host ::ng-deep .datetime-header,
+:host ::ng-deep .datetime-button,
+:host ::ng-deep [role="grid"],
+:host ::ng-deep .calendar-body {
+  background: #ffffff !important;
+  color: #111 !important;
+}
+
+:host ::ng-deep .day-selector button,
+:host ::ng-deep .calendar-day {
+  color: #333 !important;
+}
+
+:host ::ng-deep .day-selector button:hover,
+:host ::ng-deep .calendar-day:hover {
+  background: #f0f0f0 !important;
+}
+
+:host ::ng-deep .day-selector .active,
+:host ::ng-deep .calendar-day.selected {
+  background: #667eea !important;
+  color: white !important;
+}
+
+:host ::ng-deep .calendar-day.is-today {
+  background: #667eea !important;
+  color: white !important;
+}
+
+:host ::ng-deep .calendar-day.is-today::after {
+  display: none !important;
+}
+
+:host ::ng-deep .calendar-day:not(.disabled):hover.is-today {
+  background: #f0f0f0 !important;
+}
+
+:host ::ng-deep .time-picker,
+:host ::ng-deep .time-slot {
+  background: #ffffff !important;
+  color: #111 !important;
 }
 
 /* hide visual scrollbar */

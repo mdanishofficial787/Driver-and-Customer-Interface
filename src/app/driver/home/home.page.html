@@ -3,8 +3,44 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/select-user-type" text="" icon="arrow-back" class="back-btn"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="toggleMenu()" class="menu-btn">
+        <ion-icon name="menu" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<div class="menu-overlay" *ngIf="isMenuOpen" (click)="closeMenu()"></div>
+<div class="side-drawer" [class.open]="isMenuOpen">
+  <div class="profile-section">
+    <div class="profile-avatar">
+      <ion-icon name="person-circle"></ion-icon>
+    </div>
+    <div class="profile-info">
+      <h2>{{ driverName }}</h2>
+      <p class="email">{{ driverEmail }}</p>
+      <p class="phone" *ngIf="driverVehicle">{{ driverVehicle }}</p>
+    </div>
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <div class="menu-options">
+    <button class="menu-item" (click)="contactSupport()">
+      <ion-icon name="call"></ion-icon>
+      <span>Contact Us</span>
+    </button>
+    <button class="menu-item" (click)="needHelp()">
+      <ion-icon name="help-circle"></ion-icon>
+      <span>Need Help</span>
+    </button>
+    <button class="menu-item logout" (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</div>
 
 <ion-content class="driver-content">
 

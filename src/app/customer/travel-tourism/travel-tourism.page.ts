@@ -15,6 +15,7 @@ export class TravelTourismPage {
   pickupLocation = '';
   returnLocation = '';
   durationDays: number | null = null;
+  customerName = localStorage.getItem('customerName') || 'Guest';
   submitted = false;
 
   constructor(private router: Router, private http: HttpClient) {}

@@ -2,6 +2,32 @@
 .signup-content {
   --background: #F5F6FA;
   padding-top: env(safe-area-inset-top);
+  --ion-border-color: transparent !important;
+}
+
+ion-header {
+  --background: transparent;
+  --border-width: 0;
+  --border-bottom: none;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  --border-bottom: none;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+ion-content {
+  --border-width: 0 !important;
+  border: none !important;
 }
 
 /* Make header toolbar transparent like step1 */
@@ -13,6 +39,9 @@
   left: 0;
   right: 0;
   z-index: 10;
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
 }
 
 .back-btn {
@@ -219,7 +248,12 @@ h1 {
   border: 2px solid #E8E8F0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 0;
   transition: 0.3s ease;
+  padding-right: 12px;
+  box-sizing: border-box;
+  height: 56px;
 }
 
 .input-wrapper:focus-within,
@@ -231,20 +265,27 @@ h1 {
 ion-input,
 ion-select {
   --padding-start: 18px;
-  --padding-end: 45px;
+  --padding-end: 8px;
   --padding-top: 16px;
   --padding-bottom: 16px;
   font-size: 15px;
   font-weight: 500;
   color: #2D2D4E;
   flex: 1;
+  min-width: 0;
 }
 
 .valid-icon {
   position: absolute;
-  right: 15px;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 20px;
   color: #00D68F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
 
 .error-msg {
@@ -359,13 +400,25 @@ ion-icon {
 
   .input-wrapper,
   .select-wrapper {
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
+    position: relative;
+    padding-right: 12px;
+    box-sizing: border-box;
+    height: 56px;
   }
 
   ion-input,
   ion-select {
     width: 100%;
+    flex: 1;
+    min-width: 0;
+    --padding-end: 8px;
+  }
+
+  .valid-icon {
+    right: 14px;
+    font-size: 20px;
   }
 
   .upload-note,
@@ -428,12 +481,24 @@ ion-icon {
     margin-bottom: 8px;
   }
 
+  .input-wrapper,
+  .select-wrapper {
+    height: 54px;
+    padding-right: 10px;
+  }
+
   ion-input,
   ion-select {
     --padding-start: 14px;
     --padding-top: 14px;
     --padding-bottom: 14px;
+    --padding-end: 8px;
     font-size: 14px;
+  }
+
+  .valid-icon {
+    right: 12px;
+    font-size: 18px;
   }
 
   .upload-note,
@@ -497,10 +562,22 @@ ion-icon {
     font-size: 12px;
   }
 
+  .input-wrapper,
+  .select-wrapper {
+    height: 50px;
+    padding-right: 8px;
+  }
+
   ion-input,
   ion-select {
     --padding-start: 12px;
+    --padding-end: 6px;
     font-size: 13px;
+  }
+
+  .valid-icon {
+    right: 10px;
+    font-size: 18px;
   }
 
   .upload-note,
