@@ -8,13 +8,12 @@
 
 <ion-content class="signup-content">
   <div class="signup-container">
-    
+
     <!-- Header -->
     <div class="header-section">
-      <div class="header-content rs-slide-in">
-        <div class="icon-wrapper rs-float">
+      <div class="header-content">
+        <div class="icon-wrapper">
           <ion-icon name="car-outline" class="header-icon"></ion-icon>
-          <div class="icon-bg"></div>
         </div>
         <h1>Vehicle Information</h1>
         <p class="subtitle">Step 2 of 2 - Almost Done!</p>
@@ -22,25 +21,25 @@
     </div>
 
     <!-- Progress Card -->
-    <div class="progress-card rs-fade-in">
+    <div class="progress-card">
       <div class="progress-steps">
         <div class="step completed">
           <div class="step-circle">
-            <ion-icon name="checkmark"></ion-icon>
+            <ion-icon name="checkmark-outline"></ion-icon>
           </div>
-          <span>Personal</span>
+          <span class="step-label">Personal</span>
         </div>
         <div class="step-line active"></div>
         <div class="step active">
           <div class="step-circle">2</div>
-          <span>Vehicle</span>
+          <span class="step-label">Vehicle</span>
         </div>
       </div>
     </div>
 
     <!-- Form Section -->
-    <form [formGroup]="signupForm" class="form-section rs-slide-in">
-      
+    <form [formGroup]="signupForm" class="form-section">
+
       <!-- Vehicle Type -->
       <div class="input-group">
         <label class="input-label">
@@ -64,14 +63,15 @@
           Vehicle Registration Number *
         </label>
         <div class="input-wrapper">
-          <ion-input 
-            type="text" 
-            formControlName="vehicleRegistration" 
+          <ion-input
+            type="text"
+            formControlName="vehicleRegistration"
+            (ionInput)="onFieldInput('vehicleRegistration', $event)"
             placeholder="ABC-123">
           </ion-input>
         </div>
         <p class="error-msg" *ngIf="signupForm.get('vehicleRegistration')?.invalid && signupForm.get('vehicleRegistration')?.touched">
-          Please enter a valid registration number (alphanumeric, 5-15 characters).
+          <ion-icon name="alert-circle-outline"></ion-icon> Please enter a valid registration number (alphanumeric, 5-15 characters).
         </p>
       </div>
 
@@ -82,14 +82,15 @@
           Driving License Number *
         </label>
         <div class="input-wrapper">
-          <ion-input 
-            type="text" 
-            formControlName="licenseNumber" 
+          <ion-input
+            type="text"
+            formControlName="licenseNumber"
+            (ionInput)="onFieldInput('licenseNumber', $event)"
             placeholder="Enter license number">
           </ion-input>
         </div>
         <p class="error-msg" *ngIf="signupForm.get('licenseNumber')?.invalid && signupForm.get('licenseNumber')?.touched">
-          Please enter a valid license number (alphanumeric, 6-20 characters).
+          <ion-icon name="alert-circle-outline"></ion-icon> Please enter a valid license number (alphanumeric, 6-20 characters).
         </p>
       </div>
 
@@ -100,14 +101,15 @@
           Driver Smart Card Number *
         </label>
         <div class="input-wrapper">
-          <ion-input 
-            type="text" 
-            formControlName="smartCardNumber" 
+          <ion-input
+            type="text"
+            formControlName="smartCardNumber"
+            (ionInput)="onFieldInput('smartCardNumber', $event)"
             placeholder="Enter smart card number">
           </ion-input>
         </div>
         <p class="error-msg" *ngIf="signupForm.get('smartCardNumber')?.invalid && signupForm.get('smartCardNumber')?.touched">
-          Please enter a valid smart card number (alphanumeric, 6-20 characters).
+          <ion-icon name="alert-circle-outline"></ion-icon> Please enter a valid smart card number (alphanumeric, 6-20 characters).
         </p>
       </div>
 
@@ -129,13 +131,13 @@
       </div>
 
       <!-- Submit Button -->
-      <ion-button 
-        expand="block" 
+      <ion-button
+        expand="block"
         class="submit-button"
         (click)="submitRegistration()"
         [disabled]="signupForm.invalid">
         Submit Registration
-        <ion-icon slot="end" name="checkmark-done"></ion-icon>
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
       </ion-button>
 
     </form>

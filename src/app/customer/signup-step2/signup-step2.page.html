@@ -8,79 +8,88 @@
 
 <ion-content class="signup-content">
   <div class="signup-container">
+
+    <!-- Header -->
     <div class="header-section">
-      <div class="header-content rs-slide-in">
-        <div class="icon-wrapper rs-float">
+      <div class="header-content">
+        <div class="icon-wrapper">
           <ion-icon name="person-outline" class="header-icon"></ion-icon>
-          <div class="icon-bg"></div>
         </div>
         <h1>Account Setup</h1>
         <p class="subtitle">Step 2 of 2 - Create your account</p>
       </div>
     </div>
 
-    <div class="progress-card rs-fade-in">
+    <!-- Progress Steps -->
+    <div class="progress-card">
       <div class="progress-steps">
         <div class="step completed">
           <div class="step-circle">
-            <ion-icon name="checkmark"></ion-icon>
+            <ion-icon name="checkmark-outline"></ion-icon>
           </div>
-          <span>Personal</span>
+          <span class="step-label">Personal</span>
         </div>
         <div class="step-line active"></div>
         <div class="step active">
           <div class="step-circle">2</div>
-          <span>Account</span>
+          <span class="step-label">Account</span>
         </div>
       </div>
     </div>
 
-    <form [formGroup]="signupForm" class="form-section rs-slide-in">
+    <!-- Form -->
+    <form [formGroup]="signupForm" class="form-section">
 
-      <div class="input-group">
-        <label class="input-label">
-          <ion-icon name="person-circle-outline"></ion-icon>
-          Account Type *
-        </label>
-        <div class="select-wrapper account-type-display">
-          <ion-icon name="person-outline" class="account-type-icon"></ion-icon>
-          <span class="account-type-text">Personal</span>
-          <input type="hidden" formControlName="accountType" />
-        </div>
-      </div>
-
+      <!-- Password -->
       <div class="input-group">
         <label class="input-label">
           <ion-icon name="lock-closed-outline"></ion-icon>
           Password *
         </label>
         <div class="input-wrapper">
-          <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Choose a password"></ion-input>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            (ionInput)="onFieldInput('password', $event)"
+            placeholder="Choose a password">
+          </ion-input>
           <button type="button" class="password-toggle" (click)="togglePassword('password')" aria-label="Toggle password visibility">
             <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
           </button>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          <ion-icon name="alert-circle-outline"></ion-icon> Password must be at least 6 characters
+        </p>
       </div>
 
+      <!-- Confirm Password -->
       <div class="input-group">
         <label class="input-label">
-          <ion-icon name="lock-open-outline"></ion-icon>
+          <ion-icon name="lock-closed-outline"></ion-icon>
           Confirm Password *
         </label>
         <div class="input-wrapper">
-          <ion-input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Repeat password"></ion-input>
+          <ion-input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            (ionInput)="onFieldInput('confirmPassword', $event)"
+            placeholder="Repeat password">
+          </ion-input>
           <button type="button" class="password-toggle" (click)="togglePassword('confirmPassword')" aria-label="Toggle confirm password visibility">
             <ion-icon [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
           </button>
         </div>
+        <p class="error-msg" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.value.password !== signupForm.value.confirmPassword">
+          <ion-icon name="alert-circle-outline"></ion-icon> Passwords do not match
+        </p>
       </div>
 
+      <!-- Submit Button -->
       <ion-button expand="block" class="submit-button" (click)="submitRegistration()" [disabled]="signupForm.invalid">
         Submit Registration
-        <ion-icon slot="end" name="checkmark"></ion-icon>
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
       </ion-button>
 
     </form>
-
   </div>
 </ion-content>

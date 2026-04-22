@@ -19,7 +19,7 @@ export class SignupStep1Page implements OnInit {
       fullName: ['', [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern(/^[A-Za-z]+$/)
+        Validators.pattern(/^[A-Za-z\s]+$/)
       ]],
       cnic: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{7}-\d{1}$/)]],
       mobile: ['', [Validators.required, Validators.pattern(/^03\d{9}$/)]],
@@ -40,10 +40,30 @@ export class SignupStep1Page implements OnInit {
     }
   }
 
+  onFieldInput(fieldName: string, event: any) {
+    // Update form control silently (emitEvent: false prevents cursor jumping)
+    this.signupForm.get(fieldName)?.setValue(event.target.value, { emitEvent: false });
+  }
+
   formatCNIC(event: any) {
-    let value = event.target.value.replace(/\D/g, '');
-    if (value.length > 5) value = value.substring(0, 5) + '-' + value.substring(5);
-    if (value.length > 13) value = value.substring(0, 13) + '-' + value.substring(13, 14);
-    this.signupForm.patchValue({ cnic: value });
+    const input = event.target;
+    let value = input.value.replace(/\D/g, ''); // Remove all non-digits
+    let formatted = '';
+    
+    // Build formatted value: 5-7-1 pattern (XXXXX-XXXXXXX-X)
+    for (let i = 0; i < value.length && i < 13; i++) {
+      if (i === 5 || i === 12) {
+        formatted += '-';
+      }
+      formatted += value[i];
+    }
+    
+    // Update input value directly without triggering cursor jump
+    if (input.value !== formatted) {
+      input.value = formatted;
+    }
+    
+    // Update form control silently (emitEvent: false prevents cursor issues)
+    this.signupForm.get('cnic')?.setValue(formatted, { emitEvent: false });
   }
 }

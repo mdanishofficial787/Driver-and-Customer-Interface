@@ -35,6 +35,11 @@ export class SignupStep2Page implements OnInit {
 
   ngOnInit() {}
 
+  onFieldInput(fieldName: string, event: any) {
+    // Update form control silently (emitEvent: false prevents cursor jumping)
+    this.signupForm.get(fieldName)?.setValue(event.target.value, { emitEvent: false });
+  }
+
   async submitRegistration() {
     if (this.signupForm.valid) {
       // Save step2 data to localStorage

@@ -20,7 +20,7 @@ export class CustomerSignupStep2Page implements OnInit {
     private toastController: ToastController
   ) {
     this.signupForm = this.formBuilder.group({
-      accountType: ['personal', Validators.required],
+
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
@@ -48,6 +48,11 @@ export class CustomerSignupStep2Page implements OnInit {
         await a.present();
       }
     }
+  }
+
+  onFieldInput(fieldName: string, event: any) {
+    // Update form control silently (emitEvent: false prevents cursor jumping)
+    this.signupForm.get(fieldName)?.setValue(event.target.value, { emitEvent: false });
   }
 
   togglePassword(field: 'password' | 'confirmPassword') {

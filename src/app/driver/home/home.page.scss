@@ -209,6 +209,26 @@
   .header-top .subtitle {
     font-size: 14px;
   }
+
+  .progress-card {
+    margin: -34px 14px 0;
+    padding: 18px 16px;
+    width: auto;
+  }
+
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .step-label {
+    font-size: 12px;
+  }
+
+  .step-line {
+    margin: 0 8px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -225,6 +245,26 @@
   .availability-toggle {
     padding: 8px 12px;
     font-size: 13px;
+  }
+
+  .progress-card {
+    margin: -28px 10px 0;
+    padding: 14px 12px;
+    border-radius: 16px;
+  }
+
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
+
+  .step-line {
+    margin: 0 4px;
   }
   
   .stats-container {
@@ -259,6 +299,28 @@
   .header-top h1 {
     font-size: 18px;
   }
+
+  .progress-card {
+    margin: -24px 8px 0;
+    padding: 12px 10px;
+    border-radius: 14px;
+  }
+
+  .step-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .step-label {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+
+  .step-line {
+    margin: 0 2px;
+    height: 2px;
+  }
   
   .stats-container {
     grid-template-columns: 1fr;
@@ -275,6 +337,91 @@
   }
 }
 
+/* ============ PROGRESS CARD SECTION ============ */
+.progress-card {
+  background: white;
+  margin: -44px auto 0;
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+  position: relative;
+  z-index: 60;
+  width: 600px;
+  max-width: 90%;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.step {
+  min-width: 70px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9B9BB4;
+}
+
+.step-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #E8E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.step.active .step-circle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.step.active {
+  color: #667eea;
+}
+
+.step.completed .step-circle {
+  background: #00D68F;
+  color: #ffffff;
+}
+
+.step.completed {
+  color: #00D68F;
+}
+
+.step-line {
+  flex: 1;
+  height: 3px;
+  background: #E8E8F0;
+  border-radius: 2px;
+  margin: 0 20px 0 16px;
+  margin-bottom: 28px;
+}
+
+.step-line.active {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.step-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ============ STATUS BANNER ============ */
 .status-banner {
   background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
   padding: 30px 20px;

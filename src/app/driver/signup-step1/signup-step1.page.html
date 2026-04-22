@@ -26,7 +26,7 @@
           <span class="step-label">Personal</span>
         </div>
         <div class="step-line"></div>
-        <div class="step">
+        <div class="step active">
           <div class="step-circle">2</div>
           <span class="step-label">Vehicle</span>
         </div>
@@ -47,13 +47,17 @@
             type="text"
             formControlName="fullName"
             placeholder="Enter your full name"
+            (ionInput)="onFieldInput('fullName', $event)"
             (ionFocus)="isNameFocused=true"
             (ionBlur)="isNameFocused=false">
           </ion-input>
           <ion-icon name="checkmark-circle" class="valid-icon" *ngIf="signupForm.get('fullName')?.valid && signupForm.get('fullName')?.touched"></ion-icon>
         </div>
         <p class="error-msg" *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
-          <ion-icon name="alert-circle"></ion-icon> Enter letters only, no spaces.
+          <ion-icon name="alert-circle"></ion-icon>
+          <span *ngIf="signupForm.get('fullName')?.errors?.['minlength']">Minimum 3 characters required</span>
+          <span *ngIf="signupForm.get('fullName')?.errors?.['pattern']">Enter letters and spaces only</span>
+          <span *ngIf="signupForm.get('fullName')?.errors?.['required']">Full name is required</span>
         </p>
       </div>
 
@@ -91,6 +95,7 @@
             type="tel"
             formControlName="mobile"
             placeholder="03XXXXXXXXX"
+            (ionInput)="onFieldInput('mobile', $event)"
             (ionFocus)="isMobileFocused=true"
             (ionBlur)="isMobileFocused=false"
             maxlength="11">
@@ -113,6 +118,7 @@
             type="email"
             formControlName="email"
             placeholder="example@email.com"
+            (ionInput)="onFieldInput('email', $event)"
             (ionFocus)="isEmailFocused=true"
             (ionBlur)="isEmailFocused=false">
           </ion-input>

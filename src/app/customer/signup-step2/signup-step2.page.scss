@@ -1,379 +1,402 @@
 /* =============================================
-	 CUSTOMER SIGNUP STEP 2 - MATCH DRIVER UI
-	 Copied and adapted from driver/signup-step2 styles
-	 ============================================= */
+   CUSTOMER SIGNUP STEP 2 - MATCH DRIVER UI
+   ============================================= */
 
 .signup-content {
-	--background: #F5F6FA;
-	padding-top: env(safe-area-inset-top);
-	--ion-border-color: transparent !important;
+  --background: #F5F6FA;
+  padding-top: env(safe-area-inset-top);
+  --ion-border-color: transparent !important;
 }
 
 ion-header {
-	--background: transparent;
-	--border-width: 0;
-	--border-bottom: none;
-	box-shadow: none !important;
-	border: none !important;
-	border-bottom: none !important;
-	border-top: none !important;
+  --background: transparent;
+  --border-width: 0;
+  --border-bottom: none;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
 }
 
 ion-toolbar {
-	--background: transparent;
-	--border-width: 0;
-	--border-bottom: none;
-	box-shadow: none !important;
-	border: none !important;
-	border-bottom: none !important;
-	border-top: none !important;
+  --background: transparent;
+  --border-width: 0;
+  --border-bottom: none;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
 }
 
 ion-content {
-	--border-width: 0 !important;
-	border: none !important;
+  --border-width: 0 !important;
+  border: none !important;
 }
 
-/* Make header toolbar transparent like step1 */
 .custom-toolbar {
-	--background: transparent;
-	--border-width: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-	border: none !important;
-	box-shadow: none !important;
-	border-bottom: none !important;
+  --background: transparent;
+  --border-width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
 }
 
 .back-btn {
-	--color: white;
-	--icon-font-size: 22px;
-	font-weight: 600;
+  --color: white;
+  --icon-font-size: 22px;
+  font-weight: 600;
 }
 
 .signup-container {
-	min-height: 100%;
+  min-height: 100%;
 }
 
 /* ============ HEADER SECTION ============ */
 .header-section {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	height: 320px;
-	padding: 0 30px;
-	text-align: center;
-	position: relative;
-	z-index: 5;
-	border-radius: 0 0 40px 40px;
-	overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 320px;
+  padding: 0 30px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  border-radius: 0 0 40px 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
 
-	&::before {
-		content: '';
-		position: absolute;
-		top: -50%;
-		right: -10%;
-		width: 300px;
-		height: 300px;
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 50%;
-	}
-
-	&::after {
-		content: '';
-		position: absolute;
-		bottom: -30%;
-		left: -5%;
-		width: 200px;
-		height: 200px;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 50%;
-	}
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
 }
 
-/* Back Arrow Top Left */
 .back-button {
-	position: absolute;
-	top: 55px;
-	left: 15px;
-	z-index: 20;
+  position: absolute;
+  top: 55px;
+  left: 15px;
+  z-index: 20;
 }
 
 .back-button ion-back-button {
-	--color: white;
-	--icon-font-size: 22px;
+  --color: white;
+  --icon-font-size: 22px;
 }
 
 .header-content {
-	padding-top: 20px;
-	position: relative;
-	z-index: 1;
-	color: white;
+  padding-top: 20px;
+  position: relative;
+  z-index: 1;
+  color: white;
 }
 
 .icon-wrapper {
-	position: relative;
-	display: inline-block;
-	margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
 }
 
 .header-icon {
-	font-size: 85px;
-	color: #ffffff;
-	margin-bottom: 10px;
+  font-size: 85px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 h1 {
-	color: #ffffff;
-	font-size: 32px;
-	font-weight: 800;
-	margin: 0;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
 }
 
 .subtitle {
-	color: rgba(255, 255, 255, 0.9);
-	font-size: 15px;
-	margin-top: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  margin-top: 6px;
 }
 
 /* ============ PROGRESS SECTION ============ */
 .progress-card {
-	background: white;
-	margin: -44px auto 0;
-	border-radius: 20px;
-	padding: 20px 24px;
-	box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
-	position: relative;
-	z-index: 60;
-
-	width: 600px;
-	max-width: 90%;
+  background: white;
+  margin: -44px auto 0;
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+  position: relative;
+  z-index: 60;
+  width: 600px;
+  max-width: 90%;
+  box-sizing: border-box;
 }
 
 .progress-steps {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0;
-	width: 100%;
-	max-width: 550px;
-	margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 .step {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	font-size: 13px;
-	font-weight: 600;
-	color: #9B9BB4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9B9BB4;
 }
 
 .step-circle {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background: #E8E8F0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 800;
-	font-size: 18px;
-	margin-bottom: 6px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #E8E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
 .step-circle ion-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 22px;
-	height: 22px;
-	font-size: 22px;
-	line-height: 0;
-	margin-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 0;
+  margin-left: 0;
 }
 
 .step.active .step-circle {
-	background: #667eea;
-	color: #ffffff;
-	box-shadow: none;
+  background: #667eea;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 .step.active { color: #667eea; }
+
 .step.completed .step-circle {
-	background: #00D68F;
-	background-image: none;
-	color: #ffffff;
-	box-shadow: none;
+  background: #00D68F;
+  background-image: none;
+  color: #ffffff;
+  box-shadow: none;
 }
+
 .step.completed { color: #00D68F; }
 
-.step-line { flex: 1; height: 3px; background: #E8E8F0; margin: 0 10px; }
+.step-line {
+  flex: 1;
+  height: 3px;
+  background: #E8E8F0;
+  margin: 0 10px;
+}
+
+.step-line.active {
+  background: #667eea;
+}
 
 /* ============ FORM SECTION ============ */
 .form-section {
-	padding: 40px 24px 60px;
-	max-width: 600px;
-	margin: 0 auto;
+  padding: 40px 24px 60px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .input-group { margin-bottom: 22px; }
 
 .input-label {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	color: #2D2D4E;
-	font-size: 15px;
-	font-weight: 700;
-	margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2D2D4E;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .input-label ion-icon { font-size: 18px; color: #667eea; }
 
 .input-wrapper,
 .select-wrapper {
-	position: relative;
-	background: #ffffff;
-	border-radius: 14px;
-	border: 2px solid #E8E8F0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0;
-	transition: 0.3s ease;
-	padding-right: 12px;
-	box-sizing: border-box;
-	height: 56px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 2px solid #E8E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  transition: 0.3s ease;
+  padding-right: 12px;
+  box-sizing: border-box;
+  height: 56px;
 }
 
 .account-type-display {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	gap: 0;
-	padding: 16px 18px;
-	width: 100%;
-	box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 16px 18px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .account-type-icon {
-	font-size: 20px;
-	color: #667eea;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-	margin-right: 12px;
+  font-size: 20px;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 12px;
 }
 
 .account-type-text {
-	font-size: 15px;
-	font-weight: 700;
-	color: #2D2D4E;
-	flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2D2D4E;
+  flex-shrink: 0;
 }
 
 .input-wrapper ion-input {
-	flex: 1;
-	width: 100%;
-	--padding-start: 18px;
-	--padding-end: 8px;
-	--padding-top: 16px;
-	--padding-bottom: 16px;
-	min-width: 0;
+  flex: 1;
+  width: 100%;
+  --padding-start: 18px;
+  --padding-end: 8px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  min-width: 0;
+  --highlight-color-focused: transparent !important;
+  --highlight-color-valid: transparent !important;
+  --highlight-color-invalid: transparent !important;
+  caret-color: #667eea;
 }
 
+/* ============ PASSWORD TOGGLE - PROFESSIONAL ============ */
 .password-toggle {
-	position: relative;
-	width: 40px;
-	height: 40px;
-	border-radius: 8px;
-	border: 1px solid rgba(102, 126, 234, 0.22);
-	background: rgba(102, 126, 234, 0.08);
-	color: #4b5ed4;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	z-index: 2;
-	pointer-events: auto;
-	box-shadow: 0 3px 8px rgba(102, 126, 234, 0.08);
-	transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-	flex-shrink: 0;
-	margin-right: 4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #9B9BB4;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  pointer-events: auto;
+  transition: color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+  margin-right: 4px;
 }
 
 .password-toggle:hover {
-	background: rgba(102, 126, 234, 0.16);
-	transform: scale(1.03);
-	box-shadow: 0 6px 16px rgba(102, 126, 234, 0.12);
+  background: rgba(102, 126, 234, 0.08);
+  color: #667eea;
+}
+
+.password-toggle:active {
+  background: rgba(102, 126, 234, 0.15);
+  color: #667eea;
 }
 
 .password-toggle ion-icon {
-	font-size: 18px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	line-height: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  margin-left: 0;
 }
 
 .input-wrapper:focus-within,
 .select-wrapper:focus-within {
-	border-color: #00D68F;
-	box-shadow: 0 0 0 4px rgba(0, 214, 143, 0.1);
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
 ion-input,
 ion-select {
-	--padding-start: 18px;
-	--padding-end: 45px;
-	--padding-top: 16px;
-	--padding-bottom: 16px;
-	font-size: 15px;
-	font-weight: 500;
-	color: #2D2D4E;
+  --padding-start: 18px;
+  --padding-end: 45px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2D2D4E;
+  --highlight-color-focused: transparent !important;
+  --highlight-color-valid: transparent !important;
+  --highlight-color-invalid: transparent !important;
+  caret-color: #667eea;
 }
 
 .valid-icon {
-	position: absolute;
-	right: 16px;
-	top: 50%;
-	transform: translateY(-50%);
-	font-size: 20px;
-	color: #00D68F;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 3;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #00D68F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
 
-.error-msg { display: flex; align-items: center; gap: 5px; color: #FF3D71; font-size: 12.5px; font-weight: 500; margin: 8px 0 0 4px; }
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #FF3D71;
+  font-size: 12.5px;
+  font-weight: 500;
+  margin: 8px 0 0 4px;
+}
 
-/* ============ DOCUMENT UPLOAD SECTION (BLACK TEXT) ============ */
+/* ============ SECURITY NOTE ============ */
 .upload-note,
 .security-note {
-	background: #ffffff;
-	padding: 18px 20px;
-	border-radius: 14px;
-	margin: 30px 0;
-	border-left: 4px solid #667eea;
-	color: #000000;
+  background: #ffffff;
+  padding: 18px 20px;
+  border-radius: 14px;
+  margin: 30px 0;
+  border-left: 4px solid #667eea;
+  color: #000000;
 }
 
 .upload-note h4,
-.security-note h4 {
-	color: #000000;
-	font-weight: 700;
-	margin-bottom: 6px;
-}
+.security-note h4 { color: #000000; font-weight: 700; margin-bottom: 6px; }
 
 .upload-note p,
 .security-note p { color: #000000; font-size: 13px; }
@@ -387,15 +410,15 @@ ion-select {
 /* ============ BUTTON ============ */
 .submit-button,
 .next-btn {
-	--background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	--border-radius: 14px;
-	--box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
-	height: 56px;
-	font-size: 16px;
-	font-weight: 700;
-	margin-top: 25px;
-	text-transform: none;
-	transition: all 0.3s ease;
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --border-radius: 14px;
+  --box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+  height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 25px;
+  text-transform: none;
+  transition: all 0.3s ease;
 }
 
 .submit-button:not([disabled]):hover,
@@ -413,22 +436,15 @@ ion-icon { font-size: 20px; margin-left: 8px; }
     border-radius: 0 0 28px 28px;
   }
 
-  .header-icon {
-    font-size: 70px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
+  .header-icon { font-size: 70px; }
+  h1 { font-size: 28px; }
+  .subtitle { font-size: 14px; }
 
   .progress-card {
-    margin: -34px 14px 0;
+    margin: -34px auto 0;
     padding: 18px 16px;
-    width: auto;
+    width: calc(100% - 28px);
+    max-width: none;
   }
 
   .form-section {
@@ -436,9 +452,7 @@ ion-icon { font-size: 20px; margin-left: 8px; }
     max-width: 100%;
   }
 
-  .input-label {
-    font-size: 14px;
-  }
+  .input-label { font-size: 14px; }
 
   .input-wrapper,
   .select-wrapper {
@@ -457,25 +471,19 @@ ion-icon { font-size: 20px; margin-left: 8px; }
     min-width: 0;
   }
 
-  .input-wrapper ion-input {
-    --padding-end: 8px;
-  }
+  .input-wrapper ion-input { --padding-end: 8px; }
 
   .password-toggle {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     margin-right: 4px;
     flex-shrink: 0;
   }
 
-  .password-toggle ion-icon {
-    font-size: 18px;
-  }
+  .password-toggle ion-icon { font-size: 20px; }
 
   .upload-note,
-  .security-note {
-    margin: 24px 0;
-  }
+  .security-note { margin: 24px 0; }
 }
 
 @media (max-width: 600px) {
@@ -484,59 +492,27 @@ ion-icon { font-size: 20px; margin-left: 8px; }
     border-radius: 0 0 20px 20px;
   }
 
-  .header-icon {
-    font-size: 60px;
-    margin-bottom: 16px;
-  }
-
-  h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-
-  .subtitle {
-    font-size: 13px;
-    margin-top: 6px;
-  }
+  .header-icon { font-size: 60px; margin-bottom: 16px; }
+  h1 { font-size: 24px; margin: 0; }
+  .subtitle { font-size: 13px; margin-top: 6px; }
 
   .progress-card {
-    margin: -28px 10px 0;
+    margin: -28px auto 0;
     padding: 14px 12px;
     border-radius: 16px;
+    width: calc(100% - 20px);
   }
 
-  .step-circle {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  }
+  .step-circle { width: 40px; height: 40px; font-size: 14px; }
+  .step-label { font-size: 11px; }
+  .step-line { margin: 0 4px; }
 
-  .step-label {
-    font-size: 11px;
-  }
-
-  .step-line {
-    margin: 0 4px 28px 4px;
-  }
-
-  .form-section {
-    padding: 20px 14px 36px;
-  }
-
-  .input-group {
-    margin-bottom: 16px;
-  }
-
-  .input-label {
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
+  .form-section { padding: 20px 14px 36px; }
+  .input-group { margin-bottom: 16px; }
+  .input-label { font-size: 13px; margin-bottom: 8px; }
 
   .input-wrapper,
-  .select-wrapper {
-    height: 54px;
-    padding-right: 10px;
-  }
+  .select-wrapper { height: 54px; padding-right: 10px; }
 
   ion-input,
   ion-select {
@@ -547,118 +523,59 @@ ion-icon { font-size: 20px; margin-left: 8px; }
     --padding-end: 8px;
   }
 
-  .password-toggle {
-    width: 38px;
-    height: 38px;
-    margin-right: 4px;
-  }
-
-  .password-toggle ion-icon {
-    font-size: 16px;
-  }
-
-  .valid-icon {
-    right: 12px;
-    font-size: 18px;
-  }
+  .password-toggle { width: 34px; height: 34px; margin-right: 4px; }
+  .password-toggle ion-icon { font-size: 18px; }
+  .valid-icon { right: 12px; font-size: 18px; }
 
   .upload-note,
-  .security-note {
-    padding: 14px 16px;
-    margin: 20px 0;
-    border-radius: 12px;
-  }
+  .security-note { padding: 14px 16px; margin: 20px 0; border-radius: 12px; }
 
   .upload-note h4,
-  .security-note h4 {
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
+  .security-note h4 { font-size: 13px; margin-bottom: 6px; }
 
   .upload-note p,
-  .security-note p {
-    font-size: 12px;
-  }
+  .security-note p { font-size: 12px; }
 
   .submit-button,
-  .next-btn {
-    height: 48px;
-    font-size: 14px;
-    margin-top: 20px;
-  }
+  .next-btn { height: 48px; font-size: 14px; margin-top: 20px; }
 }
 
 @media (max-width: 400px) {
-  .header-section {
-    padding: 40px 12px 32px;
-  }
-
-  .header-icon {
-    font-size: 50px;
-    margin-bottom: 12px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
+  .header-section { padding: 40px 12px 32px; }
+  .header-icon { font-size: 50px; margin-bottom: 12px; }
+  h1 { font-size: 20px; }
 
   .progress-card {
-    margin: -24px 8px 0;
+    margin: -24px auto 0;
     padding: 12px 10px;
+    width: calc(100% - 16px);
   }
 
-  .step-label {
-    font-size: 10px;
-  }
-
-  .form-section {
-    padding: 16px 10px 30px;
-  }
-
-  .input-group {
-    margin-bottom: 14px;
-  }
-
-  .input-label {
-    font-size: 12px;
-  }
+  .step-label { font-size: 10px; }
+  .form-section { padding: 16px 10px 30px; }
+  .input-group { margin-bottom: 14px; }
+  .input-label { font-size: 12px; }
 
   .input-wrapper,
-  .select-wrapper {
-    height: 50px;
-    padding-right: 8px;
-  }
+  .select-wrapper { height: 50px; padding-right: 8px; }
 
   ion-input,
-  ion-select {
-    --padding-start: 12px;
-    --padding-end: 6px;
-    font-size: 13px;
-  }
+  ion-select { --padding-start: 12px; --padding-end: 6px; font-size: 13px; }
 
-  .password-toggle {
-    width: 36px;
-    height: 36px;
-    margin-right: 3px;
-  }
-
-  .password-toggle ion-icon {
-    font-size: 16px;
-  }
-
-  .valid-icon {
-    right: 10px;
-    font-size: 18px;
-  }
+  .password-toggle { width: 32px; height: 32px; margin-right: 3px; }
+  .password-toggle ion-icon { font-size: 18px; }
+  .valid-icon { right: 10px; font-size: 18px; }
 
   .upload-note,
-  .security-note {
-    padding: 12px 14px;
-  }
+  .security-note { padding: 12px 14px; }
 
   .submit-button,
-  .next-btn {
-    height: 44px;
-    font-size: 13px;
-  }
+  .next-btn { height: 44px; font-size: 13px; }
+}
+
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
 }

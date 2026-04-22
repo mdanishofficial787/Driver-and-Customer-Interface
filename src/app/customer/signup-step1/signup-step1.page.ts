@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 export class CustomerSignupStep1Page implements OnInit {
   signupForm: FormGroup;
   isNameFocused = false;
+  isCnicFocused = false;
   isMobileFocused = false;
-  gpsEnabled = false;
+  isEmailFocused = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signupForm = this.formBuilder.group({
       fullName: ['', [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern(/^[A-Za-z]+$/)
+        Validators.pattern(/^[A-Za-z\s]+$/)
       ]],
+      cnic: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{7}-\d{1}$/)]],
       mobile: ['', [Validators.required, Validators.pattern(/^03\d{9}$/)]],
-      currentLocation: [''],
-      pickupLocation: ['', Validators.required],
-      weeklySchedule: [[]]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -40,17 +40,30 @@ export class CustomerSignupStep1Page implements OnInit {
     }
   }
 
-  getCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const coords = position.coords.latitude.toFixed(6) + ', ' + position.coords.longitude.toFixed(6);
-        this.signupForm.patchValue({ currentLocation: coords });
-        this.gpsEnabled = true;
-      }, (err) => {
-        console.error('Geolocation error', err);
-        this.gpsEnabled = false;
-      });
-    }
+  onFieldInput(fieldName: string, event: any) {
+    // Update form control silently (emitEvent: false prevents cursor jumping)
+    this.signupForm.get(fieldName)?.setValue(event.target.value, { emitEvent: false });
   }
 
+  formatCNIC(event: any) {
+    const input = event.target;
+    let value = input.value.replace(/\D/g, ''); // Remove all non-digits
+    let formatted = '';
+    
+    // Build formatted value: 5-7-1 pattern (XXXXX-XXXXXXX-X)
+    for (let i = 0; i < value.length && i < 13; i++) {
+      if (i === 5 || i === 12) {
+        formatted += '-';
+      }
+      formatted += value[i];
+    }
+    
+    // Update input value directly without triggering cursor jump
+    if (input.value !== formatted) {
+      input.value = formatted;
+    }
+    
+    // Update form control silently (emitEvent: false prevents cursor issues)
+    this.signupForm.get('cnic')?.setValue(formatted, { emitEvent: false });
+  }
 }

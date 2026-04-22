@@ -146,12 +146,13 @@ h1 {
   background: white;
   margin: -44px auto 0;
   border-radius: 20px;
-  padding: 20px 24px;
+  padding: 20px 20px;
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
   position: relative;
   z-index: 5;
+  transform: translateX(-20px);
 
-  max-width: 640px;
+  max-width: 300px;
   width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -160,11 +161,12 @@ h1 {
 .progress-steps {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0;
   width: 100%;
   max-width: none;
   margin: 0;
+  padding: 0 8px;
   
   /* Ensure proper centering */
   position: relative;
@@ -176,7 +178,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-width: 80px;
+  min-width: 70px;
   flex-shrink: 0;
 }
 
@@ -218,16 +220,16 @@ h1 {
 .step-line {
   flex: 1;
   height: 3px;
-  background: #E8E8F0;
+  background: #667eea;
   border-radius: 2px;
-  margin: 0 8px;
+  margin: 0 16px;
   margin-bottom: 28px;
   min-width: 40px;
 }
 
 /* ============ FORM SECTION ============ */
 .form-section {
-  padding: 24px 18px 48px;
+  padding: 24px 24px 48px;
   max-width: 640px;
   margin: 0 auto;
   width: 100%;
@@ -297,11 +299,14 @@ h1 {
     flex: 1;
     min-width: 0;
     width: 100%;
+    --highlight-color-focused: transparent !important;
+    --highlight-color-valid: transparent !important;
+    --highlight-color-invalid: transparent !important;
+    caret-color: #667eea;
   }
 
   &.focused {
     border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
   }
 
   &.valid {
@@ -310,7 +315,6 @@ h1 {
 
   &.error-box {
     border-color: #FF3D71;
-    box-shadow: 0 0 0 4px rgba(255, 61, 113, 0.08);
   }
 
   .valid-icon {
@@ -512,7 +516,7 @@ h1 {
     width: calc(100% - 28px);
     max-width: none;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 8px));
   }
 
   .progress-steps {

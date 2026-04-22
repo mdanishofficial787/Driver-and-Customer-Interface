@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ionicnicnic serve",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -45,6 +45,7 @@
     "@capacitor/android": "^5.7.0",
     "@capacitor/cli": "5.7.0",
     "@ionic/angular-toolkit": "^9.0.0",
+    "@ionic/cli": "^7.2.1",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

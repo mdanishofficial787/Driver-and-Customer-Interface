@@ -4,7 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Ionic App",
+            "url": "http://localhost:8100",
+            "webRoot": "${workspaceFolder}/src",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*"
+            }
+        },
         {
             "type": "node",
             "request": "launch",
